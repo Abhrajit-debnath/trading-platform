@@ -1,0 +1,16 @@
+{
+  "name": "crypto-trading-platform",
+  "private": "true",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "pnpm run --parallel dev",
+    "dev:gateway": "pnpm --filter api-gateway dev",
+    "dev:execution": "pnpm --filter execution-service dev",
+    "dev:events": "pnpm --filter event-service dev",
+    "dev:frontend": "pnpm --filter frontend dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.30.3"
+}
