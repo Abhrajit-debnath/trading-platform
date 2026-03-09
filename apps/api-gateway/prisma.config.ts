@@ -10,7 +10,7 @@ export default defineConfig({
   },
   datasource: {
     // url: process.env["DATABASE_URL"],
-    url: "file:./dev.db",
+    url: "file:./prisma/dev.db",
   }
 
 });
