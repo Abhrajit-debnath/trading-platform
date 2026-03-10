@@ -1,6 +1,7 @@
 import dotenv from "dotenv"
 import express, { Express, Request, Response } from "express"
 import authRouter from "./routes/auth"
+import errorHandler from "./utils/ErrorHandler"
 
 dotenv.config()
 
@@ -14,6 +15,11 @@ app.use(express.json())
 
 app.use("/api/v1/auth", authRouter)
 
+
+
+// global error middleware 
+
+app.use(errorHandler)
 
 // Health check
 app.get("/health", (req: Request, res: Response) => {
