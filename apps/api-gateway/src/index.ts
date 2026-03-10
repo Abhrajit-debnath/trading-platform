@@ -3,6 +3,7 @@ import express, { Express, Request, Response } from "express"
 import authRouter from "./routes/auth"
 import errorHandler from "./utils/ErrorHandler"
 import cookieParser from "cookie-parser"
+import authMiddleware from "./middlewares/auth.middleware"
 
 dotenv.config()
 
