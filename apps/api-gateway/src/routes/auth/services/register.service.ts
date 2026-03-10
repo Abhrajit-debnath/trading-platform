@@ -2,15 +2,14 @@ import { NextFunction, Request, Response } from "express"
 import { registerSchema } from "../schema/register.schema";
 import { AppError } from "../../../utils/AppError";
 import { prisma } from "../../../lib/prisma";
-
-
+import { sendSuccess } from "../../../utils/ResponseHandler";
+import hashPassword from "./hash.service";
+import generateToken from "./token.service";
 
 
 const registerUser = async (req: Request, res: Response, next: NextFunction) => {
 
     const parseResult = registerSchema.safeParse(req.body)
-
-    console.log(parseResult);
 
 
     if (!parseResult.success) {
@@ -22,18 +21,44 @@ const registerUser = async (req: Request, res: Response, next: NextFunction) => 
 
         const { email, password, binanceApiKey, binanceSecretKey } = parseResult.data
 
+
+        const existingUser = await prisma.user.findUnique({
+            where: { email }
+        })
+
+        if (existingUser) {
+            next(new AppError("User already exists", 409))
+            return
+        }
+
+
+
         const user = await prisma.user.create({
             data: {
                 email,
-                password,
+                password: await hashPassword(password),
                 binanceApiKey,
                 binanceSecretKey
             }
         })
 
-        console.log(user);
+        const token = generateToken(user.id, user.email)
 
 
+        // setting httpOnly cookie
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: "lax",
+            maxAge: 24 * 60 * 60 * 1000
+        })
+
+        sendSuccess(res, {
+            message: "User registered successfully",
+            token,
+
+        }, 201)
 
     } catch (error) {
         next(error)

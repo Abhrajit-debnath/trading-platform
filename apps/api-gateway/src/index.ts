@@ -2,6 +2,7 @@ import dotenv from "dotenv"
 import express, { Express, Request, Response } from "express"
 import authRouter from "./routes/auth"
 import errorHandler from "./utils/ErrorHandler"
+import cookieParser from "cookie-parser"
 
 dotenv.config()
 
@@ -10,16 +11,12 @@ const PORT = process.env.PORT || 8000
 
 // Middleware
 app.use(express.json())
+app.use(cookieParser())
 
 // Routes
 
 app.use("/api/v1/auth", authRouter)
 
-
-
-// global error middleware 
-
-app.use(errorHandler)
 
 // Health check
 app.get("/health", (req: Request, res: Response) => {
@@ -27,6 +24,12 @@ app.get("/health", (req: Request, res: Response) => {
         status: "ok"
     })
 })
+
+
+
+// global error middleware 
+
+app.use(errorHandler)
 
 app.listen(PORT, () => {
     console.log("server running on port", PORT);
