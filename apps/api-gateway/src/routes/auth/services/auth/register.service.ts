@@ -1,25 +1,25 @@
 import { NextFunction, Request, Response } from "express"
-import { registerSchema } from "../schema/register.schema";
-import { AppError } from "../../../utils/AppError";
-import { prisma } from "../../../lib/prisma";
-import { sendSuccess } from "../../../utils/ResponseHandler";
-import hashPassword from "./hash.service";
+import { registerSchema } from "../../schema/auth/register.schema";
+import { AppError } from "../../../../utils/AppError";
+import { prisma } from "../../../../lib/prisma";
+import { sendSuccess } from "../../../../utils/ResponseHandler";
+import hashPassword from "./../auth/hash.service";
 import generateToken from "./token.service";
 
 
 const registerUser = async (req: Request, res: Response, next: NextFunction) => {
 
-    const parseResult = registerSchema.safeParse(req.body)
+    const parsedResult = registerSchema.safeParse(req.body)
 
 
-    if (!parseResult.success) {
+    if (!parsedResult.success) {
         next(new AppError("Validation failed", 400))
         return
     }
 
     try {
 
-        const { email, password, binanceApiKey, binanceSecretKey } = parseResult.data
+        const { email, password, binanceApiKey, binanceSecretKey } = parsedResult.data
 
 
         const existingUser = await prisma.user.findUnique({

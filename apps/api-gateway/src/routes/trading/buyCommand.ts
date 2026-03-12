@@ -1,10 +1,10 @@
 import express, { Router } from 'express'
-import registerUser from './services/auth/register.service'
+import buyOrder from '../auth/services/trading/buyOrder.service'
 
 const router: Router = express.Router()
 
 // Route
 
-router.post("/", registerUser)
+router.post("/",buyOrder)
 
 export default router
