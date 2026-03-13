@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express"
-import redis from "../../../../lib/redis"
-import { orderSchema } from "../../schema/trading/order.schema"
-import { AppError } from "../../../../utils/AppError"
-import { sendSuccess } from "../../../../utils/ResponseHandler"
+import redis from "../../../lib/redis"
+import { orderSchema } from "../schema/order.schema"
+import { AppError } from "../../../utils/AppError"
+import { sendSuccess } from "../../../utils/ResponseHandler"
 
 const tradeOrder = async (req: Request, res: Response, next: NextFunction) => {
 

@@ -1,5 +1,5 @@
 import express, { Router } from 'express'
-import loginUser from './services/auth/login.service'
+import loginUser from './services/login.service'
 
 const router: Router = express.Router()
 

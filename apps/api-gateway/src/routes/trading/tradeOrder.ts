@@ -1,5 +1,5 @@
 import express, { Router } from 'express'
-import tradeOrder from '../auth/services/trading/order.service'
+import tradeOrder from './services/order.service'
 
 const router: Router = express.Router()
 
