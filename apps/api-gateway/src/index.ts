@@ -5,7 +5,7 @@ import errorHandler from "./utils/ErrorHandler"
 import cookieParser from "cookie-parser"
 import authMiddleware from "./middlewares/auth.middleware"
 import { connectRedis } from "./lib/redis"
-import buyRouter from "./routes/index"
+import TradeRouter from "./routes/index"
 
 dotenv.config()
 
@@ -25,7 +25,7 @@ app.use(cookieParser())
 // Routes
 
 app.use("/api/v1/auth", authRouter)
-app.use("/api/v1/trading", buyRouter)
+app.use("/api/v1/trading/orders", TradeRouter)
 
 
 // Health check

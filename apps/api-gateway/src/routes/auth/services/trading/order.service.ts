@@ -4,7 +4,7 @@ import { orderSchema } from "../../schema/trading/order.schema"
 import { AppError } from "../../../../utils/AppError"
 import { sendSuccess } from "../../../../utils/ResponseHandler"
 
-const buyOrder = async (req: Request, res: Response, next: NextFunction) => {
+const tradeOrder = async (req: Request, res: Response, next: NextFunction) => {
 
 
     const parsedResult = orderSchema.safeParse(req.body)
@@ -22,7 +22,7 @@ const buyOrder = async (req: Request, res: Response, next: NextFunction) => {
     }
 
     try {
-        await redis.publish("commands:orders:submit:", JSON.stringify(orderDetails))
+        await redis.publish("commands:orders:submit", JSON.stringify(orderDetails))
 
 
         sendSuccess(res, {
@@ -35,4 +35,4 @@ const buyOrder = async (req: Request, res: Response, next: NextFunction) => {
 }
 
 
-export default buyOrder
+export default tradeOrder
