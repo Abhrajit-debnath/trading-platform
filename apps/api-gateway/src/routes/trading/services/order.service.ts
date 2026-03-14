@@ -3,7 +3,7 @@ import redis from "../../../lib/redis"
 import { orderSchema } from "../schema/order.schema"
 import { AppError } from "../../../utils/AppError"
 import { sendSuccess } from "../../../utils/ResponseHandler"
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "@crypto/database";
 import { v4 as uuidv4 } from 'uuid';
 
 const tradeOrder = async (req: Request, res: Response, next: NextFunction) => {

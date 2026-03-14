@@ -1,6 +1,7 @@
 import getServerTime from "./getserverTime.service"
 import generateSignature from "./signature.service"
 import axios from 'axios'
+import { prisma } from "@crypto/database"
 
 export interface orderDetailsType {
     orderId: string
@@ -34,22 +35,29 @@ const placeMarketOrder = async (orderDetails: orderDetailsType) => {
 
     try {
         const response = await axios.post(
-            `${BINANCE_BASE_URL}/api/v3/order?${queryString}&signature=${signature}`,
+            `${BINANCE_BASE_URL}/api/v3/order?${queryString}&signature=${signature + '9'}`,
             null,
             { headers: { 'X-MBX-APIKEY': BINANCE_API_KEY } }
         )
 
-        if (response.data.status == 'FILLED') {
-// save to db
+
+        const data = response.data
+
+        const status = data.status
 
 
-        }
-        console.log(response.data);
+        await prisma.orderCommand.update
+
+
 
 
     } catch (error: any) {
-        console.error("Binance error:", error.response?.data || error.message)
-        throw error
+        const binanceError = error.response?.data
+        return {
+            success: false,
+            status: "REJECTED",
+            reason: binanceError?.msg ?? error
+        }
     }
 }
 

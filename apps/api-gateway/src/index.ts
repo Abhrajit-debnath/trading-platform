@@ -1,16 +1,16 @@
-import dotenv from "dotenv"
+
 import express, { Express, Request, Response } from "express"
-import authRouter from "./routes"
+import authRouter from "./routes/index"
 import errorHandler from "./utils/ErrorHandler"
 import cookieParser from "cookie-parser"
 import authMiddleware from "./middlewares/auth.middleware"
 import { connectRedis } from "./lib/redis"
 import TradeRouter from "./routes/index"
+import { env } from "@crypto/database"
 
-dotenv.config()
 
 const app: Express = express()
-const PORT = process.env.PORT || 8000
+const PORT = env.PORT
 
 
 // Redis connect
