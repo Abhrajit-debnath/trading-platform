@@ -11,7 +11,10 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
     }
     try {
         const decoded = verifytoken(token)
-        req.user = decoded
+        req.user = {
+            id: decoded.id,
+            email: decoded.email
+        }
         next()
     } catch (error) {
         next(new AppError("Invalid token", 401))

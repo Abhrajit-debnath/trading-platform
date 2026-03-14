@@ -8,7 +8,7 @@ const router: Router = Router()
 router.use("/register", registerRouter)
 router.use("/login", loginRouter)
 
-router.use("/buy",tradeRouter)
+router.use("/trade", tradeRouter)
 
 
 export default router

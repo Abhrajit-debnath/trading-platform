@@ -25,7 +25,7 @@ app.use(cookieParser())
 // Routes
 
 app.use("/api/v1/auth", authRouter)
-app.use("/api/v1/trading/orders", TradeRouter)
+app.use("/api/v1/trading/orders", authMiddleware, TradeRouter)
 
 
 // Health check
