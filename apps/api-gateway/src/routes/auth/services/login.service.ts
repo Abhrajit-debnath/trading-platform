@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express"
 import { loginSchema } from "../schema/login.schema"
 import { AppError } from "../../../utils/AppError"
-import { prisma } from "../../../lib/prisma"
+import { prisma } from "@crypto/database"
 import generateToken from "./token.service"
 import { sendSuccess } from "../../../utils/ResponseHandler"
 import verifyPassword from "./verifyPassword.service"

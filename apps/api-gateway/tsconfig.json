@@ -13,8 +13,11 @@
     "esModuleInterop": true,
     "skipLibCheck": true
   },
+    "ts-node": {
+    "files": true
+  },
   "include": ["src/**/*"],
   "references": [
-    { "path": "../../packages/" }
+    { "path": "../../apps/packages" }
   ]
 }

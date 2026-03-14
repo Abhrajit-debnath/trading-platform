@@ -3,6 +3,8 @@ import generateSignature from "./signature.service"
 import axios from 'axios'
 import { prisma } from "@crypto/database"
 
+import { env } from "@crypto/database"
+
 export interface orderDetailsType {
     orderId: string
     userId: string
@@ -12,51 +14,62 @@ export interface orderDetailsType {
     quantity: number
 }
 
-const BINANCE_BASE_URL = process.env.BINANCE_BASE_URL
-const BINANCE_API_KEY = process.env.BINANCE_API_KEY
-const BINANCE_SECRET_KEY = process.env.BINANCE_SECRET_KEY
 
-if (!BINANCE_BASE_URL || !BINANCE_API_KEY || !BINANCE_SECRET_KEY) {
-    throw new Error("Missing Binance environment variables")
-}
-console.log(BINANCE_API_KEY);
 
 
 const placeMarketOrder = async (orderDetails: orderDetailsType) => {
-    const timestamp = await getServerTime(BINANCE_BASE_URL)
+    const timestamp = await getServerTime(env.BINANCE_BASE_URL)
     console.log(timestamp);
 
-    const { symbol, side, quantity } = orderDetails
+    const { symbol, side, quantity, orderId } = orderDetails
 
     const queryString = `symbol=${symbol}&side=${side}&type=MARKET&quantity=${quantity}&timestamp=${timestamp}`
 
-    const signature = generateSignature(queryString, process.env.BINANCE_SECRET_KEY!)
-    console.log("signature:", signature)
+    const signature = generateSignature(queryString, env.BINANCE_SECRET_KEY)
 
     try {
         const response = await axios.post(
-            `${BINANCE_BASE_URL}/api/v3/order?${queryString}&signature=${signature + '9'}`,
+            `${env.BINANCE_BASE_URL}/api/v3/order?${queryString}&signature=${signature}`,
             null,
-            { headers: { 'X-MBX-APIKEY': BINANCE_API_KEY } }
+            { headers: { 'X-MBX-APIKEY': env.BINANCE_API_KEY } }
         )
-
-
         const data = response.data
 
         const status = data.status
 
 
-        await prisma.orderCommand.update
+        const orderCommand = await prisma.orderCommand.update({
+            where: {
+                orderId
+            }, data: {
+                status
+            }
+        })
+      
+
+
+        return {
+            success: true,
+            status,
+            data
+
+        }
 
 
 
 
     } catch (error: any) {
         const binanceError = error.response?.data
+
+
+        await prisma.orderCommand.update({
+            where: { orderId },
+            data: { status: "REJECTED" }
+        })
         return {
             success: false,
             status: "REJECTED",
-            reason: binanceError?.msg ?? error
+            reason: binanceError?.msg ?? error.message
         }
     }
 }
