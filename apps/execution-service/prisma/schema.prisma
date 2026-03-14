@@ -8,3 +8,13 @@ datasource db {
 }
 
 
+model OrderEvent {
+  id        String   @id @default(uuid())
+  userId    String
+  orderId   String   @unique
+  quantity  Float
+  status    String
+  price     String
+  createdAt DateTime @default(now())
+  timeStamp DateTime
+}
