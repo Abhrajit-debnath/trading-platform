@@ -1,6 +1,6 @@
-import { createClient,RedisClientType } from "redis"
+import { createClient , RedisClientType } from "redis"
 
-const redis:RedisClientType = createClient({
+const redis : RedisClientType = createClient({
     url: process.env.REDIS_URL!
 })
 

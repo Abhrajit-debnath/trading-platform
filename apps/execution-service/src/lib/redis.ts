@@ -1,7 +1,13 @@
+import { env } from "@crypto/database"
 import { createClient } from "redis"
 
-const sub = createClient({
-    url: process.env.REDIS_URL!
+
+export const sub = createClient({
+    url: env.REDIS_URL
+})
+
+export const pub = createClient({
+    url: env.REDIS_URL
 })
 
 
@@ -12,6 +18,6 @@ sub.on("connect", () => {
 
 export const connectRedis = async () => {
     await sub.connect()
+    await pub.connect()
 }
 
-export default sub

@@ -22,6 +22,7 @@ export const env = {
 
     // App
     PORT: process.env.PORT || '3000',
+    EVENT_SERVICE_PORT: process.env.EVENT_SERVICE_PORT || 8081,
     NODE_ENV: process.env.NODE_ENV || 'development',
 
 }

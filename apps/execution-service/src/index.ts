@@ -5,12 +5,15 @@ import fetchOrderData from "./services/orderSubscribing/subscriber.redis";
 
 // Connect to redis
 
-connectRedis()
+const start = async () => {
+    await connectRedis()
+    fetchOrderData()
+}
 
 
 //
 
-fetchOrderData()
+start()
 
 
 

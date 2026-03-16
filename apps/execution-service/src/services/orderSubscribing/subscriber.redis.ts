@@ -1,15 +1,17 @@
-import pub from "../../lib/pubRedis";
-import subClient from "../../lib/redis"
+import { pub } from "../../lib/redis";
+import {sub} from "../../lib/redis"
 import placeMarketOrder from "../trade/binance.service";
 import { orderDetailsType } from "../trade/binance.service";
 
 const fetchOrderData = async () => {
 
     try {
-        subClient.subscribe("commands:order:submit", async (orderDetails) => {
+        sub.subscribe("commands:order:submit", async (orderDetails) => {
             console.log(orderDetails);
 
             const order: orderDetailsType = JSON.parse(orderDetails)
+            console.log(order);
+            
             const orderResponse = await placeMarketOrder(order)
 
             await pub.publish("events:order:status", JSON.stringify({
