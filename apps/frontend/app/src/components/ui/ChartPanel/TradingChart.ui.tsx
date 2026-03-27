@@ -1,6 +1,6 @@
 'use client'
 import { ColorType, createChart, CandlestickSeries, UTCTimestamp } from 'lightweight-charts'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, memo } from 'react'
 
 
 type klineRow = [number, string, string, string, string, string, number, string, number, string, string, string]
@@ -9,7 +9,7 @@ type TradingChartProps = {
     symbol: string
 }
 
-const TradingChart = ({ chartData, symbol }: TradingChartProps) => {
+const TradingChart = memo(({ chartData, symbol }: TradingChartProps) => {
     const chartRef = useRef<HTMLDivElement>(null)
 
 
@@ -55,6 +55,6 @@ const TradingChart = ({ chartData, symbol }: TradingChartProps) => {
             <div className="w-full h-96" ref={chartRef} />
         </div>
     )
-}
+})
 
 export default TradingChart

@@ -12,7 +12,7 @@ const MarketNav = () => {
                         onClick={() => setActive(navItem)}
                         className="cursor-pointer relative pb-2"
                     >
-                        <span className={`text-xs font-medium capitalize font-poppins transition-colors duration-200
+                        <span className={`text-xs font-medium capitalize font-poppins lg:text-sm transition-colors duration-200
                             ${active === navItem ? "text-purple-600" : "text-gray-500"}`}>
                             {navItem}
                         </span>

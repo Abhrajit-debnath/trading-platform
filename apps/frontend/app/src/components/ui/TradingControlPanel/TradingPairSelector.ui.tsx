@@ -56,7 +56,7 @@ const TradingPairSelector = () => {
 
 
     return (
-        <div ref={dropdownRef} className="relative w-32 sm:w-60 lg:w-40 xl:w-60">
+        <div ref={dropdownRef} className="relative w-32 sm:w-60 lg:w-40">
 
             <button
                 onClick={() => setIsOpen(prev => !prev)}
