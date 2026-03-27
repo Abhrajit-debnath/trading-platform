@@ -6,10 +6,11 @@ import { useRef, useEffect, memo } from 'react'
 type klineRow = [number, string, string, string, string, string, number, string, number, string, string, string]
 type TradingChartProps = {
     chartData: klineRow[],
-    symbol: string
+    symbol: string,
+    interval: string
 }
 
-const TradingChart = memo(({ chartData, symbol }: TradingChartProps) => {
+const TradingChart = memo(({ chartData, symbol, interval }: TradingChartProps) => {
     const chartRef = useRef<HTMLDivElement>(null)
 
 
@@ -25,6 +26,26 @@ const TradingChart = memo(({ chartData, symbol }: TradingChartProps) => {
                 background: { type: ColorType.Solid, color: 'white' },
             },
         })
+
+
+        const ws = new WebSocket(
+            `wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@kline_${interval}`
+        )
+
+
+        ws.onmessage = async (e) => {
+            const data = await JSON.parse(e.data)
+            const candle = data.k
+            const realTimeData = {
+                time: (candle.t / 1000) as UTCTimestamp,
+                open: parseFloat(candle.o),
+                high: parseFloat(candle.h),
+                low: parseFloat(candle.l),
+                close: parseFloat(candle.c),
+            }
+            candlestickSeries.update(realTimeData)
+        }
+
 
         const candlestickSeries = chart.addSeries(CandlestickSeries, {
             upColor: '#26a69a',
@@ -44,7 +65,10 @@ const TradingChart = memo(({ chartData, symbol }: TradingChartProps) => {
         })
         )
 
+
+
         candlestickSeries.setData(formattedChartData)
+
         chart.timeScale().fitContent()
 
         return () => chart.remove()

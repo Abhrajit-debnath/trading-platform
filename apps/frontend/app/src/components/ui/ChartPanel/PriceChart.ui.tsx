@@ -22,10 +22,10 @@ const PriceChart = () => {
                 `https://testnet.binance.vision/api/v3/klines?symbol=${symbol}&interval=${interval}&limit=500`
             )
 
-        
+
             return res.data
         },
-        staleTime : 5 * 60 *1000
+        staleTime: 5 * 60 * 1000
     })
 
 
@@ -33,9 +33,9 @@ const PriceChart = () => {
         <div className='rounded-3xl p-4 border border-gray-300'>
             <div className="flex justify-between">
                 <div className="pb-3">
-                    <div className="uppercase font-poppins font-medium pb-3 text-sm">{`${symbol.substring(0, 3)}/${symbol.substring(3,)}`}</div>
-                    <div className="flex gap-2 items-center">
-                        <div className="font-poppins font-semibold text-sm w-18">{price}</div>
+                    <div className="uppercase font-poppins font-medium pb-3 text-sm sm:text-lg lg:text-xl">{`${symbol.substring(0, 3)}/${symbol.substring(3,)}`}</div>
+                    <div className="flex gap-2 md:gap-6 lg:gap-8 items-center">
+                        <div className="font-poppins font-semibold text-sm sm:text-xl lg:text-[20px] w-18">{price}</div>
                         <div className={`font-poppins font-medium px-3 py-1 rounded-full text-xs flex items-center gap-1
         ${isPositive ? "bg-green-100 text-green-600" : "bg-red-100 text-red-600"}`}>
                             {isPositive ? <FaArrowUp size={10} /> : <FaArrowDown size={10} />}
@@ -60,7 +60,7 @@ const PriceChart = () => {
                 </div>
             </div>
             <div className="w-full">
-                <TradingChart chartData={chartData} symbol={symbol} />
+                <TradingChart chartData={chartData} symbol={symbol} interval={interval} />
             </div>
 
         </div>

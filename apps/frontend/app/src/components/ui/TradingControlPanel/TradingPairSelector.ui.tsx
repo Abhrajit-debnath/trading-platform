@@ -56,13 +56,13 @@ const TradingPairSelector = () => {
 
 
     return (
-        <div ref={dropdownRef} className="relative w-32 sm:w-60 lg:w-40">
+        <div ref={dropdownRef} className="relative w-32 sm:w-40">
 
             <button
                 onClick={() => setIsOpen(prev => !prev)}
                 className="w-full flex items-center justify-between gap-2 px-3 py-1 border-gray-300 border rounded-full transition-colors duration-150 group"
             >
-                <div className="flex items-center gap-5">
+                <div className="flex items-center gap-3">
 
                     <div className="w-4 h-4 sm:w-6 sm:h-6 rounded-full bg-[#f7931a]/20 flex  items-center justify-center">
                         <span className="text-[10px] font-bold text-[#f7931a]">
@@ -92,7 +92,7 @@ const TradingPairSelector = () => {
 
             {isOpen && (
                 <div className="absolute w-68  top-full mt-1 right-0 z-50 rounded-md border border-gray-300 bg-white shadow-2xl overflow-hidden">
-                    {/* Search */}
+            
                     <div className="px-2 pt-2 pb-1">
                         <div className="flex items-center gap-2 px-2 py-1.5 rounded  border border-gray-300">
                             <svg className="w-3.5 h-3.5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -116,7 +116,6 @@ const TradingPairSelector = () => {
                         </div>
                     </div>
 
-                    {/* List */}
                     <ul className="max-h-52 overflow-y-auto py-1 scrollbar-thin scrollbar-thumb-[#2a2d3a]">
                         {filtered.length === 0 ? (
                             <li className="px-3 py-3 text-xs text-gray-500 text-center">No pairs found</li>
