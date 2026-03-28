@@ -7,11 +7,13 @@ import axios from 'axios'
 import UsePriceTicker from '@/app/src/hooks/UsePriceTicker.hook'
 import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
+import { TRADING_PAIRS } from '@/app/src/constants/tradingPairs'
+
 
 const PriceChart = () => {
     const symbol = useAppSelector((state) => state.symbols.value)
     const [price, change, isPositive] = UsePriceTicker(symbol)
-
+    const selected = TRADING_PAIRS.find(p => p.symbol === symbol)
 
     const [interval, setInterval] = useState("1m")
 
@@ -33,7 +35,7 @@ const PriceChart = () => {
         <div className='rounded-3xl p-4 border border-gray-300'>
             <div className="flex justify-between">
                 <div className="pb-3">
-                    <div className="uppercase font-poppins font-medium pb-3 text-sm sm:text-lg lg:text-xl">{`${symbol.substring(0, 3)}/${symbol.substring(3,)}`}</div>
+                    <div className="uppercase font-poppins font-medium pb-3 text-sm sm:text-lg lg:text-xl">{`${selected?.base}/${selected?.quote}`}</div>
                     <div className="flex gap-2 md:gap-6 lg:gap-8 items-center">
                         <div className="font-poppins font-semibold text-sm sm:text-xl lg:text-[20px] w-18">{price}</div>
                         <div className={`font-poppins font-medium px-3 py-1 rounded-full text-xs flex items-center gap-1

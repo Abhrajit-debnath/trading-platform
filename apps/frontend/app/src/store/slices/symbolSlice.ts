@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
 interface symbolState {
-    value: string
+    value: string,
 
 }
 
 const initialState: symbolState = {
-    value: "BTCUSDT"
+    value: "BTCUSDT",
 }
 
 export const symbolSlice = createSlice({

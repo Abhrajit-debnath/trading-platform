@@ -71,7 +71,10 @@ const TradingChart = memo(({ chartData, symbol, interval }: TradingChartProps) =
 
         chart.timeScale().fitContent()
 
-        return () => chart.remove()
+        return () => {
+            chart.remove()
+            ws.close()
+        }
     }, [chartData, symbol])
 
     return (

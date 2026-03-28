@@ -1,21 +1,9 @@
 'use client'
 
 import { useAppDispatch, useAppSelector } from '@/app/hook'
+import { TRADING_PAIRS } from '@/app/src/constants/tradingPairs'
 import { setSymbol } from '@/app/src/store/slices/symbolSlice'
 import { useState, useRef, useEffect } from 'react'
-
-const TRADING_PAIRS = [
-    { symbol: 'BTCUSDT', base: 'BTC', quote: 'USDT', name: 'Bitcoin' },
-    { symbol: 'ETHUSDT', base: 'ETH', quote: 'USDT', name: 'Ethereum' },
-    { symbol: 'BNBUSDT', base: 'BNB', quote: 'USDT', name: 'BNB' },
-    { symbol: 'SOLUSDT', base: 'SOL', quote: 'USDT', name: 'Solana' },
-    { symbol: 'XRPUSDT', base: 'XRP', quote: 'USDT', name: 'XRP' },
-    { symbol: 'ADAUSDT', base: 'ADA', quote: 'USDT', name: 'Cardano' },
-    { symbol: 'DOGEUSDT', base: 'DOGE', quote: 'USDT', name: 'Dogecoin' },
-    { symbol: 'AVAXUSDT', base: 'AVAX', quote: 'USDT', name: 'Avalanche' },
-    { symbol: 'LTCUSDT', base: 'LTC', quote: 'USDT', name: 'Litecoin' },
-    { symbol: 'LINKUSDT', base: 'LINK', quote: 'USDT', name: 'Chainlink' },
-]
 
 
 
@@ -56,11 +44,11 @@ const TradingPairSelector = () => {
 
 
     return (
-        <div ref={dropdownRef} className="relative w-32 sm:w-40">
+        <div ref={dropdownRef} className="relative w-32 sm:w-40 ">
 
             <button
                 onClick={() => setIsOpen(prev => !prev)}
-                className="w-full flex items-center justify-between gap-2 px-3 py-1 border-gray-300 border rounded-full transition-colors duration-150 group"
+                className="w-full cursor-pointer flex items-center justify-between gap-2 px-3 py-1 border-gray-300 border rounded-full transition-colors duration-150 group"
             >
                 <div className="flex items-center gap-3">
 
@@ -92,7 +80,7 @@ const TradingPairSelector = () => {
 
             {isOpen && (
                 <div className="absolute w-68  top-full mt-1 right-0 z-50 rounded-md border border-gray-300 bg-white shadow-2xl overflow-hidden">
-            
+
                     <div className="px-2 pt-2 pb-1">
                         <div className="flex items-center gap-2 px-2 py-1.5 rounded  border border-gray-300">
                             <svg className="w-3.5 h-3.5 text-gray-500 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
