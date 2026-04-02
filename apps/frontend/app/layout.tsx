@@ -1,10 +1,10 @@
-
-
 import type { Metadata } from "next";
 import { Poppins, Roboto } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./src/components/providers/Query.Provider";
 import ReduxProvider from "./src/components/providers/Redux.Provider";
+
+import { Toaster } from 'react-hot-toast';
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -35,8 +35,12 @@ export default function RootLayout({
         <body
           className={`${poppins.variable} ${roboto.variable} antialiased`}
         >
+
+
+
           <ReduxProvider>
             {children}
+            <Toaster />
           </ReduxProvider>
 
 

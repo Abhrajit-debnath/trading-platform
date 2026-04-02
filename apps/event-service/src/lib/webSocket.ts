@@ -10,15 +10,16 @@ const initSocket = (httpServer: HTTPserver) => {
     io = new Server(httpServer, {
         cookie: true,
         cors: {
-            origin: ["http://127.0.0.1:5500", "http://localhost:5500"],
-            methods: ["GET", "POST"]
+            origin: ["http://localhost:3000", "http://localhost:5500"],
+            methods: ["GET", "POST"],
+            credentials : true
         }
     })
 
 
     io.use((socket, next) => {
         try {
-            const token = socket.handshake.auth.token
+            const token = socket.handshake.headers.cookie?.split(";").find((c=>c.trim().startsWith("token=")))?.split("=")[1]    
             if (!token) {
                 throw new Error("Unauthorized")
             }

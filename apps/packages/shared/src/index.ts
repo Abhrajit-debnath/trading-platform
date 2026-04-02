@@ -21,7 +21,7 @@ export const env = {
     BINANCE_SECRET_KEY: process.env.BINANCE_SECRET_KEY!,
 
     // App
-    PORT: process.env.PORT || '3000',
+    PORT: process.env.PORT,
     EVENT_SERVICE_PORT: process.env.EVENT_SERVICE_PORT || 8081,
     NODE_ENV: process.env.NODE_ENV || 'development',
 

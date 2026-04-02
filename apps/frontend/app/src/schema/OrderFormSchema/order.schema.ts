@@ -1,7 +1,7 @@
 import z from "zod"
 
 const numberField =
-    z.number({ message: "Input must be a number" })
+    z.number({ message: "Input must be a number" }).min(0.0001, "Minimum quantity is 0.0001")
     ;
 
 export const combinedOrderSchema = z.object({

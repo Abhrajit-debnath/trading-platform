@@ -9,7 +9,11 @@ import generateToken from "./token.service";
 
 const registerUser = async (req: Request, res: Response, next: NextFunction) => {
 
+
+
     const parsedResult = registerSchema.safeParse(req.body)
+
+
 
 
     if (!parsedResult.success) {
@@ -41,6 +45,9 @@ const registerUser = async (req: Request, res: Response, next: NextFunction) => 
                 binanceSecretKey
             }
         })
+
+     
+
 
         const token = generateToken(user.id, user.email)
 

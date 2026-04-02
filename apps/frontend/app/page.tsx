@@ -9,6 +9,7 @@ import axios from "axios";
 import { useQuery } from '@tanstack/react-query'
 import { useMemo, } from "react";
 import { useAppSelector } from "./hook";
+import SocketProvider from "./src/components/providers/Socket.Provider";
 
 
 interface TradingPair {
@@ -45,7 +46,7 @@ export default function Home() {
 
 
 
-  
+
 
 
   // const commonPairs = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "ADAUSDT", "DOGEUSDT", "AVAXUSDT", "LTCUSDT", "LINKUSDT", "SOLUSDT"]
@@ -80,50 +81,53 @@ export default function Home() {
 
 
   return (
-    <div className="w-screen h-screen p-2 flex flex-col overflow-hidden">
+    <SocketProvider>
+      <div className="w-screen h-screen p-2 flex flex-col overflow-hidden">
 
 
 
-      {/* Navbar */}
-      <div className="shrink-0">
-        <Navbar />
-      </div>
-      <div className="flex items-center py-4">
-        <h1 className="text-xl md:text-2xl capitalize font-poppins font-medium">portfolio</h1>
-      </div>
-
-      {/* Mobile: normal scroll | Desktop: fixed height layout */}
-      <div className="flex-1 min-h-0 overflow-y-auto lg:overflow-hidden flex flex-col">
-
-        {/* Top row */}
-        <div className="shrink-0 flex flex-col-reverse lg:flex-row lg:gap-5">
-
-          <div className="w-full lg:w-[35%]">
-            <TradingControls />
-          </div>
-          <div className="w-full lg:w-[65%]">
-            <PriceChart />
-          </div>
+        {/* Navbar */}
+        <div className="shrink-0">
+          <Navbar />
+        </div>
+        <div className="flex items-center py-4">
+          <h1 className="text-xl md:text-2xl capitalize font-poppins font-medium">portfolio</h1>
         </div>
 
-        {/* Bottom row */}
-        <div className="flex flex-col-reverse gap-12 lg:flex-row lg:gap-5 mt-2
-                      lg:flex-1 lg:min-h-0">
+        {/* Mobile: normal scroll | Desktop: fixed height layout */}
+        <div className="flex-1 min-h-0 overflow-y-auto lg:overflow-hidden flex flex-col">
 
-          {/* AccountPanel */}
-          <div className="w-full lg:w-[35%] lg:h-full">
-            <div className="border rounded-xl flex items-center justify-center h-44 lg:h-full">
-              AccountPanel
+          {/* Top row */}
+          <div className="shrink-0 flex flex-col-reverse lg:flex-row lg:gap-5">
+
+            <div className="w-full lg:w-[35%]">
+              <TradingControls />
+            </div>
+            <div className="w-full lg:w-[65%]">
+              <PriceChart />
             </div>
           </div>
 
-          {/* PositionsPanel */}
-          <div className="w-full lg:w-[65%] lg:h-full max-h-125">
-            <PositionsPanel />
-          </div>
+          {/* Bottom row */}
+          <div className="flex flex-col-reverse gap-12 lg:flex-row lg:gap-5 mt-2
+                      lg:flex-1 lg:min-h-0">
 
+            {/* AccountPanel */}
+            <div className="w-full lg:w-[35%] lg:h-full">
+              <div className="border rounded-xl flex items-center justify-center h-44 lg:h-full">
+                AccountPanel
+              </div>
+            </div>
+
+            {/* PositionsPanel */}
+            <div className="w-full lg:w-[65%] lg:h-full max-h-125">
+              <PositionsPanel />
+            </div>
+
+          </div>
         </div>
       </div>
-    </div>
+    </SocketProvider>
+
   );
 }
