@@ -4,7 +4,9 @@ export const orderSchema = z.object({
     symbol: z.string(),
     side: z.string(),
     type: z.string(),
-    quantity: z.number()
+    quantity: z.number(),
+    price : z.number().optional(),
+    stopPrice:z.number().optional()
 
 
 })

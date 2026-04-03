@@ -135,6 +135,8 @@ exports.Prisma.OrderCommandScalarFieldEnum = {
   orderId: 'orderId',
   symbol: 'symbol',
   side: 'side',
+  price: 'price',
+  stopPrice: 'stopPrice',
   type: 'type',
   quantity: 'quantity',
   status: 'status',
@@ -147,7 +149,9 @@ exports.Prisma.OrderEventScalarFieldEnum = {
   orderId: 'orderId',
   quantity: 'quantity',
   status: 'status',
+  side: 'side',
   price: 'price',
+  symbol: 'symbol',
   createdAt: 'createdAt',
   timeStamp: 'timeStamp'
 };
@@ -160,6 +164,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 

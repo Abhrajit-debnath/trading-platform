@@ -7,8 +7,8 @@ interface orderStatusType {
     symbol: string
     side: string
     quantity: number
-    price: number
-    timeStamp: Date,
+    price: string
+    timeStamp: Date
 }
 
 

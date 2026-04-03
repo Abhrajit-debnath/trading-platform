@@ -11,6 +11,8 @@ export interface orderDetailsType {
     symbol: string
     side: string
     type: string
+    price?: number,
+    stopPrice?: number,
     quantity: number
 }
 
@@ -19,17 +21,22 @@ export interface orderDetailsType {
 
 const placeMarketOrder = async (orderDetails: orderDetailsType) => {
     const timestamp = await getServerTime(env.BINANCE_BASE_URL)
-      console.log('USING API KEY:', env.BINANCE_API_KEY?.slice(0, 10))
-    console.log('USING BASE URL:', env.BINANCE_BASE_URL)
-    console.log(timestamp);
 
-    const { symbol, side, quantity, orderId } = orderDetails
 
-    const queryString = `symbol=${symbol}&side=${side}&type=MARKET&quantity=${quantity}&timestamp=${timestamp}`
+    const { symbol, side, quantity, orderId, type, price, stopPrice } = orderDetails
+
+
+    let queryString = `symbol=${symbol}&side=${side}&type=${type}&quantity=${quantity}&timestamp=${timestamp}`
+
+    if (type === 'LIMIT') {
+        queryString += `&price=${price}&timeInForce=GTC`
+    }
+
+    if (type === 'STOP_LOSS') {
+        queryString += `&stopPrice=${stopPrice}`
+    }
 
     const signature = generateSignature(queryString, env.BINANCE_SECRET_KEY)
-  console.log('signature:', signature)
-    console.log('full URL:', `${env.BINANCE_BASE_URL}/api/v3/order?${queryString}&signature=${signature}`)
     try {
         const response = await axios.post(
             `${env.BINANCE_BASE_URL}/api/v3/order?${queryString}&signature=${signature}`,
@@ -40,31 +47,6 @@ const placeMarketOrder = async (orderDetails: orderDetailsType) => {
 
         const status = data.status
 
-
-
-        const calclulateAvgPrice = (fills: any[]) => {
-            if (!fills || fills.length === 0) return null
-
-            let totalQty = 0
-            let totalCost = 0
-
-            for (const fill of fills) {
-                const price = Number(fill.price)
-                const qty = Number(fill.qty)
-
-
-                totalQty += qty
-                totalCost += price * qty
-            }
-
-            return totalCost / totalQty
-
-        }
-
-        
-
-        const avgPrice = calclulateAvgPrice(data.fills);
-
         const orderCommand = await prisma.orderCommand.update({
             where: {
                 orderId
@@ -74,12 +56,12 @@ const placeMarketOrder = async (orderDetails: orderDetailsType) => {
         })
 
 
+        console.log(orderCommand);
 
         return {
             success: true,
             status,
             data,
-            executedPrice: avgPrice
 
         }
 
@@ -88,7 +70,7 @@ const placeMarketOrder = async (orderDetails: orderDetailsType) => {
 
     } catch (error: any) {
         const binanceError = error.response?.data
-         console.error('Binance error:', JSON.stringify(binanceError, null, 2))
+        console.error('Binance error:', JSON.stringify(binanceError, null, 2))
 
 
         await prisma.orderCommand.update({

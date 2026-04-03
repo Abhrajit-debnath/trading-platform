@@ -16,12 +16,7 @@ const tradeOrder = async (req: Request, res: Response, next: NextFunction) => {
         return
     }
 
-    console.log(parsedResult);
-
-
-    const { symbol, side, type, quantity } = parsedResult.data
-
-
+    const { symbol, side, type, quantity, price, stopPrice } = parsedResult.data
 
 
     try {
@@ -42,6 +37,8 @@ const tradeOrder = async (req: Request, res: Response, next: NextFunction) => {
                 orderId,
                 symbol,
                 quantity,
+                price,
+                stopPrice,
                 type,
                 side,
                 status: "PENDING"
@@ -53,6 +50,8 @@ const tradeOrder = async (req: Request, res: Response, next: NextFunction) => {
             symbol,
             side,
             type,
+            price,
+            stopPrice,
             quantity,
             userId,
             timeStamp: order.createdAt.toISOString()

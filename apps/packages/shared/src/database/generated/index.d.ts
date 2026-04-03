@@ -2179,10 +2179,14 @@ export namespace Prisma {
   }
 
   export type OrderCommandAvgAggregateOutputType = {
+    price: number | null
+    stopPrice: number | null
     quantity: number | null
   }
 
   export type OrderCommandSumAggregateOutputType = {
+    price: number | null
+    stopPrice: number | null
     quantity: number | null
   }
 
@@ -2192,6 +2196,8 @@ export namespace Prisma {
     orderId: string | null
     symbol: string | null
     side: string | null
+    price: number | null
+    stopPrice: number | null
     type: string | null
     quantity: number | null
     status: string | null
@@ -2204,6 +2210,8 @@ export namespace Prisma {
     orderId: string | null
     symbol: string | null
     side: string | null
+    price: number | null
+    stopPrice: number | null
     type: string | null
     quantity: number | null
     status: string | null
@@ -2216,6 +2224,8 @@ export namespace Prisma {
     orderId: number
     symbol: number
     side: number
+    price: number
+    stopPrice: number
     type: number
     quantity: number
     status: number
@@ -2225,10 +2235,14 @@ export namespace Prisma {
 
 
   export type OrderCommandAvgAggregateInputType = {
+    price?: true
+    stopPrice?: true
     quantity?: true
   }
 
   export type OrderCommandSumAggregateInputType = {
+    price?: true
+    stopPrice?: true
     quantity?: true
   }
 
@@ -2238,6 +2252,8 @@ export namespace Prisma {
     orderId?: true
     symbol?: true
     side?: true
+    price?: true
+    stopPrice?: true
     type?: true
     quantity?: true
     status?: true
@@ -2250,6 +2266,8 @@ export namespace Prisma {
     orderId?: true
     symbol?: true
     side?: true
+    price?: true
+    stopPrice?: true
     type?: true
     quantity?: true
     status?: true
@@ -2262,6 +2280,8 @@ export namespace Prisma {
     orderId?: true
     symbol?: true
     side?: true
+    price?: true
+    stopPrice?: true
     type?: true
     quantity?: true
     status?: true
@@ -2361,6 +2381,8 @@ export namespace Prisma {
     orderId: string
     symbol: string
     side: string
+    price: number | null
+    stopPrice: number | null
     type: string
     quantity: number
     status: string
@@ -2392,6 +2414,8 @@ export namespace Prisma {
     orderId?: boolean
     symbol?: boolean
     side?: boolean
+    price?: boolean
+    stopPrice?: boolean
     type?: boolean
     quantity?: boolean
     status?: boolean
@@ -2405,6 +2429,8 @@ export namespace Prisma {
     orderId?: boolean
     symbol?: boolean
     side?: boolean
+    price?: boolean
+    stopPrice?: boolean
     type?: boolean
     quantity?: boolean
     status?: boolean
@@ -2418,6 +2444,8 @@ export namespace Prisma {
     orderId?: boolean
     symbol?: boolean
     side?: boolean
+    price?: boolean
+    stopPrice?: boolean
     type?: boolean
     quantity?: boolean
     status?: boolean
@@ -2431,13 +2459,15 @@ export namespace Prisma {
     orderId?: boolean
     symbol?: boolean
     side?: boolean
+    price?: boolean
+    stopPrice?: boolean
     type?: boolean
     quantity?: boolean
     status?: boolean
     createdAt?: boolean
   }
 
-  export type OrderCommandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orderId" | "symbol" | "side" | "type" | "quantity" | "status" | "createdAt", ExtArgs["result"]["orderCommand"]>
+  export type OrderCommandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orderId" | "symbol" | "side" | "price" | "stopPrice" | "type" | "quantity" | "status" | "createdAt", ExtArgs["result"]["orderCommand"]>
   export type OrderCommandInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2459,6 +2489,8 @@ export namespace Prisma {
       orderId: string
       symbol: string
       side: string
+      price: number | null
+      stopPrice: number | null
       type: string
       quantity: number
       status: string
@@ -2892,6 +2924,8 @@ export namespace Prisma {
     readonly orderId: FieldRef<"OrderCommand", 'String'>
     readonly symbol: FieldRef<"OrderCommand", 'String'>
     readonly side: FieldRef<"OrderCommand", 'String'>
+    readonly price: FieldRef<"OrderCommand", 'Float'>
+    readonly stopPrice: FieldRef<"OrderCommand", 'Float'>
     readonly type: FieldRef<"OrderCommand", 'String'>
     readonly quantity: FieldRef<"OrderCommand", 'Float'>
     readonly status: FieldRef<"OrderCommand", 'String'>
@@ -3329,10 +3363,12 @@ export namespace Prisma {
 
   export type OrderEventAvgAggregateOutputType = {
     quantity: number | null
+    price: number | null
   }
 
   export type OrderEventSumAggregateOutputType = {
     quantity: number | null
+    price: number | null
   }
 
   export type OrderEventMinAggregateOutputType = {
@@ -3341,7 +3377,9 @@ export namespace Prisma {
     orderId: string | null
     quantity: number | null
     status: string | null
-    price: string | null
+    side: string | null
+    price: number | null
+    symbol: string | null
     createdAt: Date | null
     timeStamp: Date | null
   }
@@ -3352,7 +3390,9 @@ export namespace Prisma {
     orderId: string | null
     quantity: number | null
     status: string | null
-    price: string | null
+    side: string | null
+    price: number | null
+    symbol: string | null
     createdAt: Date | null
     timeStamp: Date | null
   }
@@ -3363,7 +3403,9 @@ export namespace Prisma {
     orderId: number
     quantity: number
     status: number
+    side: number
     price: number
+    symbol: number
     createdAt: number
     timeStamp: number
     _all: number
@@ -3372,10 +3414,12 @@ export namespace Prisma {
 
   export type OrderEventAvgAggregateInputType = {
     quantity?: true
+    price?: true
   }
 
   export type OrderEventSumAggregateInputType = {
     quantity?: true
+    price?: true
   }
 
   export type OrderEventMinAggregateInputType = {
@@ -3384,7 +3428,9 @@ export namespace Prisma {
     orderId?: true
     quantity?: true
     status?: true
+    side?: true
     price?: true
+    symbol?: true
     createdAt?: true
     timeStamp?: true
   }
@@ -3395,7 +3441,9 @@ export namespace Prisma {
     orderId?: true
     quantity?: true
     status?: true
+    side?: true
     price?: true
+    symbol?: true
     createdAt?: true
     timeStamp?: true
   }
@@ -3406,7 +3454,9 @@ export namespace Prisma {
     orderId?: true
     quantity?: true
     status?: true
+    side?: true
     price?: true
+    symbol?: true
     createdAt?: true
     timeStamp?: true
     _all?: true
@@ -3504,7 +3554,9 @@ export namespace Prisma {
     orderId: string
     quantity: number
     status: string
-    price: string
+    side: string
+    price: number
+    symbol: string
     createdAt: Date
     timeStamp: Date
     _count: OrderEventCountAggregateOutputType | null
@@ -3534,7 +3586,9 @@ export namespace Prisma {
     orderId?: boolean
     quantity?: boolean
     status?: boolean
+    side?: boolean
     price?: boolean
+    symbol?: boolean
     createdAt?: boolean
     timeStamp?: boolean
   }, ExtArgs["result"]["orderEvent"]>
@@ -3545,7 +3599,9 @@ export namespace Prisma {
     orderId?: boolean
     quantity?: boolean
     status?: boolean
+    side?: boolean
     price?: boolean
+    symbol?: boolean
     createdAt?: boolean
     timeStamp?: boolean
   }, ExtArgs["result"]["orderEvent"]>
@@ -3556,7 +3612,9 @@ export namespace Prisma {
     orderId?: boolean
     quantity?: boolean
     status?: boolean
+    side?: boolean
     price?: boolean
+    symbol?: boolean
     createdAt?: boolean
     timeStamp?: boolean
   }, ExtArgs["result"]["orderEvent"]>
@@ -3567,12 +3625,14 @@ export namespace Prisma {
     orderId?: boolean
     quantity?: boolean
     status?: boolean
+    side?: boolean
     price?: boolean
+    symbol?: boolean
     createdAt?: boolean
     timeStamp?: boolean
   }
 
-  export type OrderEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orderId" | "quantity" | "status" | "price" | "createdAt" | "timeStamp", ExtArgs["result"]["orderEvent"]>
+  export type OrderEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orderId" | "quantity" | "status" | "side" | "price" | "symbol" | "createdAt" | "timeStamp", ExtArgs["result"]["orderEvent"]>
 
   export type $OrderEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OrderEvent"
@@ -3583,7 +3643,9 @@ export namespace Prisma {
       orderId: string
       quantity: number
       status: string
-      price: string
+      side: string
+      price: number
+      symbol: string
       createdAt: Date
       timeStamp: Date
     }, ExtArgs["result"]["orderEvent"]>
@@ -4014,7 +4076,9 @@ export namespace Prisma {
     readonly orderId: FieldRef<"OrderEvent", 'String'>
     readonly quantity: FieldRef<"OrderEvent", 'Float'>
     readonly status: FieldRef<"OrderEvent", 'String'>
-    readonly price: FieldRef<"OrderEvent", 'String'>
+    readonly side: FieldRef<"OrderEvent", 'String'>
+    readonly price: FieldRef<"OrderEvent", 'Float'>
+    readonly symbol: FieldRef<"OrderEvent", 'String'>
     readonly createdAt: FieldRef<"OrderEvent", 'DateTime'>
     readonly timeStamp: FieldRef<"OrderEvent", 'DateTime'>
   }
@@ -4420,6 +4484,8 @@ export namespace Prisma {
     orderId: 'orderId',
     symbol: 'symbol',
     side: 'side',
+    price: 'price',
+    stopPrice: 'stopPrice',
     type: 'type',
     quantity: 'quantity',
     status: 'status',
@@ -4435,7 +4501,9 @@ export namespace Prisma {
     orderId: 'orderId',
     quantity: 'quantity',
     status: 'status',
+    side: 'side',
     price: 'price',
+    symbol: 'symbol',
     createdAt: 'createdAt',
     timeStamp: 'timeStamp'
   };
@@ -4457,6 +4525,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -4592,6 +4668,8 @@ export namespace Prisma {
     orderId?: StringFilter<"OrderCommand"> | string
     symbol?: StringFilter<"OrderCommand"> | string
     side?: StringFilter<"OrderCommand"> | string
+    price?: FloatNullableFilter<"OrderCommand"> | number | null
+    stopPrice?: FloatNullableFilter<"OrderCommand"> | number | null
     type?: StringFilter<"OrderCommand"> | string
     quantity?: FloatFilter<"OrderCommand"> | number
     status?: StringFilter<"OrderCommand"> | string
@@ -4605,6 +4683,8 @@ export namespace Prisma {
     orderId?: SortOrder
     symbol?: SortOrder
     side?: SortOrder
+    price?: SortOrderInput | SortOrder
+    stopPrice?: SortOrderInput | SortOrder
     type?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
@@ -4621,6 +4701,8 @@ export namespace Prisma {
     userId?: StringFilter<"OrderCommand"> | string
     symbol?: StringFilter<"OrderCommand"> | string
     side?: StringFilter<"OrderCommand"> | string
+    price?: FloatNullableFilter<"OrderCommand"> | number | null
+    stopPrice?: FloatNullableFilter<"OrderCommand"> | number | null
     type?: StringFilter<"OrderCommand"> | string
     quantity?: FloatFilter<"OrderCommand"> | number
     status?: StringFilter<"OrderCommand"> | string
@@ -4634,6 +4716,8 @@ export namespace Prisma {
     orderId?: SortOrder
     symbol?: SortOrder
     side?: SortOrder
+    price?: SortOrderInput | SortOrder
+    stopPrice?: SortOrderInput | SortOrder
     type?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
@@ -4654,6 +4738,8 @@ export namespace Prisma {
     orderId?: StringWithAggregatesFilter<"OrderCommand"> | string
     symbol?: StringWithAggregatesFilter<"OrderCommand"> | string
     side?: StringWithAggregatesFilter<"OrderCommand"> | string
+    price?: FloatNullableWithAggregatesFilter<"OrderCommand"> | number | null
+    stopPrice?: FloatNullableWithAggregatesFilter<"OrderCommand"> | number | null
     type?: StringWithAggregatesFilter<"OrderCommand"> | string
     quantity?: FloatWithAggregatesFilter<"OrderCommand"> | number
     status?: StringWithAggregatesFilter<"OrderCommand"> | string
@@ -4669,7 +4755,9 @@ export namespace Prisma {
     orderId?: StringFilter<"OrderEvent"> | string
     quantity?: FloatFilter<"OrderEvent"> | number
     status?: StringFilter<"OrderEvent"> | string
-    price?: StringFilter<"OrderEvent"> | string
+    side?: StringFilter<"OrderEvent"> | string
+    price?: FloatFilter<"OrderEvent"> | number
+    symbol?: StringFilter<"OrderEvent"> | string
     createdAt?: DateTimeFilter<"OrderEvent"> | Date | string
     timeStamp?: DateTimeFilter<"OrderEvent"> | Date | string
   }
@@ -4680,7 +4768,9 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    side?: SortOrder
     price?: SortOrder
+    symbol?: SortOrder
     createdAt?: SortOrder
     timeStamp?: SortOrder
   }
@@ -4694,7 +4784,9 @@ export namespace Prisma {
     userId?: StringFilter<"OrderEvent"> | string
     quantity?: FloatFilter<"OrderEvent"> | number
     status?: StringFilter<"OrderEvent"> | string
-    price?: StringFilter<"OrderEvent"> | string
+    side?: StringFilter<"OrderEvent"> | string
+    price?: FloatFilter<"OrderEvent"> | number
+    symbol?: StringFilter<"OrderEvent"> | string
     createdAt?: DateTimeFilter<"OrderEvent"> | Date | string
     timeStamp?: DateTimeFilter<"OrderEvent"> | Date | string
   }, "id" | "orderId">
@@ -4705,7 +4797,9 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    side?: SortOrder
     price?: SortOrder
+    symbol?: SortOrder
     createdAt?: SortOrder
     timeStamp?: SortOrder
     _count?: OrderEventCountOrderByAggregateInput
@@ -4724,7 +4818,9 @@ export namespace Prisma {
     orderId?: StringWithAggregatesFilter<"OrderEvent"> | string
     quantity?: FloatWithAggregatesFilter<"OrderEvent"> | number
     status?: StringWithAggregatesFilter<"OrderEvent"> | string
-    price?: StringWithAggregatesFilter<"OrderEvent"> | string
+    side?: StringWithAggregatesFilter<"OrderEvent"> | string
+    price?: FloatWithAggregatesFilter<"OrderEvent"> | number
+    symbol?: StringWithAggregatesFilter<"OrderEvent"> | string
     createdAt?: DateTimeWithAggregatesFilter<"OrderEvent"> | Date | string
     timeStamp?: DateTimeWithAggregatesFilter<"OrderEvent"> | Date | string
   }
@@ -4801,6 +4897,8 @@ export namespace Prisma {
     orderId: string
     symbol: string
     side: string
+    price?: number | null
+    stopPrice?: number | null
     type: string
     quantity: number
     status?: string
@@ -4814,6 +4912,8 @@ export namespace Prisma {
     orderId: string
     symbol: string
     side: string
+    price?: number | null
+    stopPrice?: number | null
     type: string
     quantity: number
     status?: string
@@ -4825,6 +4925,8 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     symbol?: StringFieldUpdateOperationsInput | string
     side?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stopPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     type?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -4838,6 +4940,8 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     symbol?: StringFieldUpdateOperationsInput | string
     side?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stopPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     type?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -4850,6 +4954,8 @@ export namespace Prisma {
     orderId: string
     symbol: string
     side: string
+    price?: number | null
+    stopPrice?: number | null
     type: string
     quantity: number
     status?: string
@@ -4861,6 +4967,8 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     symbol?: StringFieldUpdateOperationsInput | string
     side?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stopPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     type?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -4873,6 +4981,8 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     symbol?: StringFieldUpdateOperationsInput | string
     side?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stopPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     type?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -4885,7 +4995,9 @@ export namespace Prisma {
     orderId: string
     quantity: number
     status: string
-    price: string
+    side?: string
+    price: number
+    symbol: string
     createdAt?: Date | string
     timeStamp: Date | string
   }
@@ -4896,7 +5008,9 @@ export namespace Prisma {
     orderId: string
     quantity: number
     status: string
-    price: string
+    side?: string
+    price: number
+    symbol: string
     createdAt?: Date | string
     timeStamp: Date | string
   }
@@ -4907,7 +5021,9 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    side?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    symbol?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4918,7 +5034,9 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    side?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    symbol?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4929,7 +5047,9 @@ export namespace Prisma {
     orderId: string
     quantity: number
     status: string
-    price: string
+    side?: string
+    price: number
+    symbol: string
     createdAt?: Date | string
     timeStamp: Date | string
   }
@@ -4940,7 +5060,9 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    side?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    symbol?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4951,7 +5073,9 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
-    price?: StringFieldUpdateOperationsInput | string
+    side?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    symbol?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     timeStamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5051,6 +5175,17 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -5067,12 +5202,19 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
   export type OrderCommandCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     orderId?: SortOrder
     symbol?: SortOrder
     side?: SortOrder
+    price?: SortOrder
+    stopPrice?: SortOrder
     type?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
@@ -5080,6 +5222,8 @@ export namespace Prisma {
   }
 
   export type OrderCommandAvgOrderByAggregateInput = {
+    price?: SortOrder
+    stopPrice?: SortOrder
     quantity?: SortOrder
   }
 
@@ -5089,6 +5233,8 @@ export namespace Prisma {
     orderId?: SortOrder
     symbol?: SortOrder
     side?: SortOrder
+    price?: SortOrder
+    stopPrice?: SortOrder
     type?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
@@ -5101,6 +5247,8 @@ export namespace Prisma {
     orderId?: SortOrder
     symbol?: SortOrder
     side?: SortOrder
+    price?: SortOrder
+    stopPrice?: SortOrder
     type?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
@@ -5108,7 +5256,25 @@ export namespace Prisma {
   }
 
   export type OrderCommandSumOrderByAggregateInput = {
+    price?: SortOrder
+    stopPrice?: SortOrder
     quantity?: SortOrder
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
   export type FloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -5133,13 +5299,16 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    side?: SortOrder
     price?: SortOrder
+    symbol?: SortOrder
     createdAt?: SortOrder
     timeStamp?: SortOrder
   }
 
   export type OrderEventAvgOrderByAggregateInput = {
     quantity?: SortOrder
+    price?: SortOrder
   }
 
   export type OrderEventMaxOrderByAggregateInput = {
@@ -5148,7 +5317,9 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    side?: SortOrder
     price?: SortOrder
+    symbol?: SortOrder
     createdAt?: SortOrder
     timeStamp?: SortOrder
   }
@@ -5159,13 +5330,16 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    side?: SortOrder
     price?: SortOrder
+    symbol?: SortOrder
     createdAt?: SortOrder
     timeStamp?: SortOrder
   }
 
   export type OrderEventSumOrderByAggregateInput = {
     quantity?: SortOrder
+    price?: SortOrder
   }
 
   export type OrderCommandCreateNestedManyWithoutUserInput = {
@@ -5222,6 +5396,14 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutOrderInput, UserUncheckedCreateWithoutOrderInput>
     connectOrCreate?: UserCreateOrConnectWithoutOrderInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type FloatFieldUpdateOperationsInput = {
@@ -5307,6 +5489,17 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -5316,6 +5509,33 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -5339,6 +5559,8 @@ export namespace Prisma {
     orderId: string
     symbol: string
     side: string
+    price?: number | null
+    stopPrice?: number | null
     type: string
     quantity: number
     status?: string
@@ -5350,6 +5572,8 @@ export namespace Prisma {
     orderId: string
     symbol: string
     side: string
+    price?: number | null
+    stopPrice?: number | null
     type: string
     quantity: number
     status?: string
@@ -5391,6 +5615,8 @@ export namespace Prisma {
     orderId?: StringFilter<"OrderCommand"> | string
     symbol?: StringFilter<"OrderCommand"> | string
     side?: StringFilter<"OrderCommand"> | string
+    price?: FloatNullableFilter<"OrderCommand"> | number | null
+    stopPrice?: FloatNullableFilter<"OrderCommand"> | number | null
     type?: StringFilter<"OrderCommand"> | string
     quantity?: FloatFilter<"OrderCommand"> | number
     status?: StringFilter<"OrderCommand"> | string
@@ -5454,6 +5680,8 @@ export namespace Prisma {
     orderId: string
     symbol: string
     side: string
+    price?: number | null
+    stopPrice?: number | null
     type: string
     quantity: number
     status?: string
@@ -5465,6 +5693,8 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     symbol?: StringFieldUpdateOperationsInput | string
     side?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stopPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     type?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -5476,6 +5706,8 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     symbol?: StringFieldUpdateOperationsInput | string
     side?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stopPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     type?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -5487,6 +5719,8 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     symbol?: StringFieldUpdateOperationsInput | string
     side?: StringFieldUpdateOperationsInput | string
+    price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stopPrice?: NullableFloatFieldUpdateOperationsInput | number | null
     type?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string

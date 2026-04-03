@@ -18,16 +18,18 @@ model User {
 }
 
 model OrderCommand {
-    id            String   @id @default(uuid())
-    userId        String
-    user          User     @relation(fields: [userId], references: [id])
-    orderId       String   @unique
-    symbol        String
-    side          String
-    type          String
-    quantity      Float
-    status        String   @default("PENDING")
-    createdAt     DateTime @default(now())
+    id        String   @id @default(uuid())
+    userId    String
+    user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    orderId   String   @unique
+    symbol    String
+    side      String
+    price     Float?
+    stopPrice Float?
+    type      String
+    quantity  Float
+    status    String   @default("PENDING")
+    createdAt DateTime @default(now())
 }
 
 model OrderEvent {
@@ -36,7 +38,9 @@ model OrderEvent {
     orderId   String   @unique
     quantity  Float
     status    String
-    price     String
+    side      String  @default("BUY")
+    price     Float
+    symbol    String
     createdAt DateTime @default(now())
     timeStamp DateTime
 }

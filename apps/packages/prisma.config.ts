@@ -1,3 +1,7 @@
+import path from 'path'
+import dotenv from 'dotenv'
+dotenv.config({ path: path.resolve(__dirname, '../../.env') })
+
 import 'dotenv/config'
 import { defineConfig, env } from 'prisma/config'
 
@@ -8,4 +12,3 @@ export default defineConfig({
     url: env('DIRECT_URL'),
   },
 })
-
