@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import MarketNav from '../TradingControlPanel/MarketNav.ui'
 import TradeButton from '../TradingControlPanel/TradeButton.ui'
-import { useForm } from "react-hook-form"
+import { useForm, type Resolver } from "react-hook-form"
 import { combinedOrderSchema, type orderFormData } from "../../../schema/OrderFormSchema/order.schema"
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAppSelector } from '@/app/hook'
@@ -12,18 +12,13 @@ const PriceControls = () => {
     const symbol = useAppSelector((state) => state.symbols.value)
     const side = useAppSelector((state) => state.side.value)
 
-
-
-
-
-
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
     } = useForm<orderFormData>({
-        resolver: zodResolver(combinedOrderSchema),
+        resolver: zodResolver(combinedOrderSchema) as Resolver<orderFormData>,
         shouldUnregister: true
     });
 
@@ -40,11 +35,15 @@ const PriceControls = () => {
         const payload = {
             symbol,
             side,
-            type: data.limitPrice ? "LIMIT" : data.stopPrice ? "STOP" : "MARKET",
+            price: data.limitPrice || undefined,
+            stopPrice: data.stopPrice || undefined,
+            type: data.limitPrice ? "LIMIT" : data.stopPrice ? "STOP_LOSS" : "MARKET",
             quantity: data.quantity
         }
         try {
-            const res = await axios.post("http://localhost:8000/api/trading/orders", payload)
+            const res = await axios.post("http://localhost:8000/api/trading/orders", payload, {
+                withCredentials: true
+            })
             console.log(res);
 
 
@@ -56,14 +55,14 @@ const PriceControls = () => {
 
 
     return (
-        <div className='w-full'>
+        <div className='w-full h-full'>
             <div className="">
                 <MarketNav activeMarketnav={activeMarketnav} setActiveMarketnav={setActiveMarketnav} />
             </div>
             <form onSubmit={handleSubmit(onformSubmit)} className="mt-2 flex flex-col space-y-2">
                 {activeMarketnav !== 'market' && (
                     <>
-                        <label htmlFor="inputLimit" className='font-poppins text-sm text-gray-600 capitalize'>
+                        <label htmlFor="inputLimit" className='font-poppins text-sm text-gray-600 capitalize font-medium'>
                             {activeMarketnav === 'limit' ? "limit price" : activeMarketnav === 'stop market' ? "stop price" : ""}
                         </label>
                         <div className="relative">
@@ -89,7 +88,7 @@ const PriceControls = () => {
 
                 <div className="flex flex-col space-y-2 sm:flex-row sm:justify-between lg:gap-5">
                     <div className="flex-col flex space-y-2">
-                        <label htmlFor="inputquant" className='font-poppins text-sm text-gray-600 capitalize'>quantity</label>
+                        <label htmlFor="inputquant" className='font-poppins text-sm text-gray-600 capitalize font-medium'>quantity</label>
                         <div className="relative">
                             <input
                                 {...register("quantity", { valueAsNumber: true })}
@@ -110,7 +109,7 @@ const PriceControls = () => {
                     </div>
                     {activeMarketnav === 'limit' && (
                         <div className="flex-col flex space-y-2">
-                            <label htmlFor='inputTotal' className='font-poppins text-sm text-gray-600 capitalize'>total</label>
+                            <label htmlFor='inputTotal' className='font-poppins text-sm text-gray-600 capitalize font-medium'>total</label>
                             <div className="relative">
                                 <input value={limitPrice && quantity ? (quantity * limitPrice) : ""} readOnly id='inputTotal' type="text" className='w-full border rounded-xs border-gray-300 outline-none px-4 py-0.5 pr-12' />
                                 <span className='font-roboto text-xs font-medium text-gray-600 uppercase absolute right-2 top-1/2 -translate-y-1/2'>

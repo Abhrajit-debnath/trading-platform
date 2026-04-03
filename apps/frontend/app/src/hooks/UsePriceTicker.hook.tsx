@@ -7,18 +7,17 @@ const UsePriceTicker = (symbol: string): [number, number, boolean] => {
   const [isPositive, setIsPositive] = useState<boolean>(true)
 
   useEffect(() => {
-    const ws = new WebSocket(
-      `wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@ticker`
-    )
+    let ws: WebSocket
 
-    ws.onmessage = (e) => {
-      const data = JSON.parse(e.data)
-      setPrice(parseFloat(data.c))
-      setChange(parseFloat(data.P))
-      setIsPositive(parseFloat(data.P) >= 0)
-    }
+  
+      ws = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@ticker`)
+      ws.onmessage = (e) => {
+        const data = JSON.parse(e.data)
+        setPrice(parseFloat(data.c))
+        setChange(parseFloat(data.P))
+        setIsPositive(parseFloat(data.P) >= 0)
+      }
 
-    ws.onerror = (e) => console.error('WS error', e)
 
     return () => ws.close()
   }, [symbol])

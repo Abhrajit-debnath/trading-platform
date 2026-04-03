@@ -10,6 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 import { useMemo, } from "react";
 import { useAppSelector } from "./hook";
 import SocketProvider from "./src/components/providers/Socket.Provider";
+import AccountDetails from "./src/components/ui/AccountDetailsPanel/AccountDetails.ui";
 
 
 interface TradingPair {
@@ -83,9 +84,6 @@ export default function Home() {
   return (
     <SocketProvider>
       <div className="w-screen h-screen p-2 flex flex-col overflow-hidden">
-
-
-
         {/* Navbar */}
         <div className="shrink-0">
           <Navbar />
@@ -94,11 +92,10 @@ export default function Home() {
           <h1 className="text-xl md:text-2xl capitalize font-poppins font-medium">portfolio</h1>
         </div>
 
-        {/* Mobile: normal scroll | Desktop: fixed height layout */}
         <div className="flex-1 min-h-0 overflow-y-auto lg:overflow-hidden flex flex-col">
 
           {/* Top row */}
-          <div className="shrink-0 flex flex-col-reverse lg:flex-row lg:gap-5">
+          <div className="shrink-0 flex flex-col-reverse lg:flex-row md:gap-5">
 
             <div className="w-full lg:w-[35%]">
               <TradingControls />
@@ -114,8 +111,8 @@ export default function Home() {
 
             {/* AccountPanel */}
             <div className="w-full lg:w-[35%] lg:h-full">
-              <div className="border rounded-xl flex items-center justify-center h-44 lg:h-full">
-                AccountPanel
+              <div className="h-44 lg:h-full">
+                <AccountDetails />
               </div>
             </div>
 

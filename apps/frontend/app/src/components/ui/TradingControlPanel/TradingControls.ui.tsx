@@ -7,17 +7,15 @@ import { setSide } from "@/app/src/store/slices/sideSlice"
 
 const TradingControls = () => {
     const dispatch = useAppDispatch()
-    const side = useAppSelector((state)=>state.side.value)
-
-
+    const side = useAppSelector((state) => state.side.value)
     return (
         <div className='rounded-3xl p-4 mt-5 md:mt-0 border border-gray-300 lg:w-full'>
             <div className="flex justify-between items-center">
                 <div className="">
-                    <button className={`rounded-l-2xl text-xs cursor-pointer border border-gray-300 px-5 py-1 uppercase md:text-sm ${side == 'buy' ? "bg-gray-100" : ""}`} onClick={() => {
+                    <button className={`rounded-l-2xl text-sm font-poppins font-medium cursor-pointer border px-5 py-1 uppercase md:text-sm ${side == 'buy' ? "bg-green-700 border text-white border-green-700 " : "bg-gray-100 border-gray-300 "}`} onClick={() => {
                         dispatch(setSide("buy"))
                     }}>buy</button>
-                    <button className={`rounded-r-2xl text-xs  border-l-0 cursor-pointer border border-gray-300 px-5 py-1 uppercase md:text-sm ${side == 'sell' ? "bg-gray-100" : ""}`} onClick={() => {
+                    <button className={`rounded-r-2xl text-sm font-poppins font-medium   border-l-0 cursor-pointer border border-gray-300 px-5 py-1 uppercase md:text-sm ${side == 'sell' ? "bg-red-700 border text-white border-red-700 " : "bg-gray-100 border-gray-300"}`} onClick={() => {
                         dispatch(setSide("sell"))
                     }}>sell</button>
                 </div>
