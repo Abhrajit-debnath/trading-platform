@@ -149,6 +149,7 @@ exports.Prisma.OrderEventScalarFieldEnum = {
   orderId: 'orderId',
   quantity: 'quantity',
   status: 'status',
+  isOpen: 'isOpen',
   side: 'side',
   price: 'price',
   symbol: 'symbol',

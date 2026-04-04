@@ -1,10 +1,12 @@
 import React from 'react'
 import PositionRow from './PositionRow.ui'
+import AllPriceProvider from '../../providers/AllPrice.Provider'
 
 export interface tradesDataInterface {
 
     createdAt: Date
     id: string
+    side: string
     orderId: string
     price: number
     quantity: number
@@ -25,7 +27,7 @@ const HistoryTable = ({ tradesData }: HistoryTableProps) => {
             <thead className="sticky top-0 bg-white z-10">
                 <tr>
                     {['Transaction', 'Size', 'Entry Price', 'Market Price', 'P&L', 'Unrealized %'].map((col) => (
-                        <th key={col} className="px-3 py-2 text-left text-[10px] text-slate-500 w-1/6">
+                        <th key={col} className="px-3 py-2 text-left text-[10px] md:text-[13px] text-slate-500 w-1/6">
                             {col}
                         </th>
                     ))}
@@ -33,7 +35,10 @@ const HistoryTable = ({ tradesData }: HistoryTableProps) => {
             </thead>
             <tbody>
                 {tradesData.map((position) => (
-                    <PositionRow key={position.id} position={position} />
+                    <AllPriceProvider>
+                        <PositionRow key={position.id} position={position} />
+                    </AllPriceProvider>
+
                 ))}
             </tbody>
         </table>

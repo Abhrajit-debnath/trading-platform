@@ -20,6 +20,8 @@ const getOrderStatus = async () => {
         redis.subscribe("events:order:status", async (orderDetails) => {
 
             const orderStatus: orderStatusType = JSON.parse(orderDetails)
+            console.log(orderStatus);
+            
 
             if (orderStatus) {
                 const orderEvent = await prisma.orderEvent.create({
@@ -34,6 +36,9 @@ const getOrderStatus = async () => {
                         timeStamp: orderStatus.timeStamp,
                     }
                 })
+
+                console.log(orderEvent);
+                
 
                 broadcastTouser(orderStatus.userId, "ORDER_UPDATE", orderStatus)
 

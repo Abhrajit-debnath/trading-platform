@@ -12,12 +12,12 @@ const data  = UseReactQuery("/api/account","accountInfo")
 
     return (
         <div className='rounded-xl p-4  border border-gray-300 h-full'>
-            <div className="font-poppins font-semibold text-base mb-4">Account</div>
+            <div className="font-poppins font-semibold text-xl">Account</div>
             <div className="flex flex-col gap-5 lg:gap-15 lg:justify-center lg:h-full">
                 {fields.map((field) => (
                     <div key={field.label} className="flex justify-between items-center">
-                        <div className="text-sm text-gray-500 font-roboto">{field.label}</div>
-                        <div className="text-sm font-roboto">{field.value}</div>
+                        <div className="text-md text-gray-500 font-roboto">{field.label}</div>
+                        <div className="text-md font-roboto">{field.value}</div>
                     </div>
                 ))}
             </div>

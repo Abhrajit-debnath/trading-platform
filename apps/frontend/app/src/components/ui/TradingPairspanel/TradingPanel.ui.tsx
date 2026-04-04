@@ -1,16 +1,16 @@
 'use client'
 
 import React, { useState } from 'react'
-import Pagination from './Pagination.ui'
 import SearchBar from './SearchBar'
 import UseReactQuery from '@/app/src/hooks/UseReactQuery.hook'
-import PositionRow from './PositionRow.ui'
-import { symbol } from 'zod'
 import HistoryTable from './HistoryTable.ui'
 export default function PositionsPanel() {
 
     const [activeTab, setActiveTab] = useState<React.SetStateAction<string>>('positions')
-    const data = UseReactQuery(activeTab === 'positions' ? "/api/trading/positions" : activeTab === 'orders' ? "/api/trading/orders" : "/api/trading/trades","positions")
+    const [data, isLoading] = UseReactQuery(activeTab === 'positions' ? "/api/trading/positions" : activeTab === 'orders' ? "/api/trading/orders" : "/api/trading/trades", "positions")
+
+
+
     const tradesData = data?.data ?? []
     return (
         <div className="w-full h-full rounded-xl p-4 border border-gray-300 mt-5 lg:mt-0 flex flex-col overflow-hidden">
@@ -33,19 +33,15 @@ export default function PositionsPanel() {
 
 
             <div className="flex-1 overflow-y-auto min-h-0">
-                {activeTab === 'positions' ?
-                    (<HistoryTable tradesData={tradesData} />) : activeTab === 'orders' ?
-                        (<HistoryTable tradesData={tradesData} />) :
-                        (<HistoryTable tradesData={tradesData} />)
 
-                }
+                {isLoading ? (
+                    <div className="text-gray-400 text-sm p-4 w-full font-poppins h-full flex justify-center items-center capitalize md:text-lg">loading data ...</div>
+                ) : tradesData.length === 0 ? (
+                    <div className="text-gray-400 text-sm p-4 w-full h-full flex justify-center items-center capitalize md:text-lg font-poppins">no data ..</div>
+                ) : (
+                    <HistoryTable tradesData={tradesData} />
+                )}
             </div>
-
-            {/* Pagination — fixed at bottom */}
-            {/* <div className="shrink-0 pt-2 border-t border-gray-100">
-                <Pagination setPage={setPage} page={page} totalPages={totalPages} />
-            </div> */}
-
         </div>
     )
 }

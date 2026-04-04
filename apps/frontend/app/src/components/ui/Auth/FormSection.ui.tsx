@@ -21,13 +21,7 @@ const FormSection = ({ fields, state }: FormSectionProps) => {
     const router = useRouter()
 
 
-
-
-
-
-
-
-    const { handleSubmit, register, reset, formState: { errors } } = useForm<z.infer<typeof authSchema>>({
+    const { handleSubmit, register, reset, formState: { errors, isSubmitting } } = useForm<z.infer<typeof authSchema>>({
         resolver: zodResolver(state === 'login' ? LoginSchema : RegisterSchema),
     })
 
@@ -36,7 +30,6 @@ const FormSection = ({ fields, state }: FormSectionProps) => {
         reset()
 
     }, [state])
-    console.log(authSchema);
 
 
     const onSubmit = async (data: z.infer<typeof authSchema>) => {
@@ -117,9 +110,10 @@ const FormSection = ({ fields, state }: FormSectionProps) => {
 
             <button
                 type="submit"
+                disabled={isSubmitting}
                 className="w-full bg-purple-600 hover:bg-purple-500 active:bg-purple-700 text-white text-sm tracking-widest uppercase font-medium rounded-lg py-3 transition-all duration-200 mt-2"
             >
-                {state}
+                {isSubmitting ? (state === 'login' ? "logging in..." : "registering in...") : state}
             </button>
         </form>
     )

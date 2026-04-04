@@ -7,7 +7,7 @@ interface sideSlice {
 }
 
 const initialState: sideSlice = {
-    value: "buy"
+    value: "BUY"
 }
 
 export const sideSlice = createSlice({

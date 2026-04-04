@@ -6,6 +6,7 @@ import { combinedOrderSchema, type orderFormData } from "../../../schema/OrderFo
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useAppSelector } from '@/app/hook'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const PriceControls = () => {
     const [activeMarketnav, setActiveMarketnav] = useState<string>("limit")
@@ -44,11 +45,18 @@ const PriceControls = () => {
             const res = await axios.post("http://localhost:8000/api/trading/orders", payload, {
                 withCredentials: true
             })
-            console.log(res);
+            toast.success(`order placing  ${data.limitPrice ? `at ${data.limitPrice}` : `with ${data.quantity}`}`)
+
+
 
 
         } catch (error) {
+            if (axios.isAxiosError(error)) {
+                toast.error(error.response?.status === 404 ? "Order failed" : error.message)
 
+            } else {
+                toast.error("Something went wrong")
+            }
         }
     };
 

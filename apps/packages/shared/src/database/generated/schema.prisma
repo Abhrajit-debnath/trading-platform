@@ -38,6 +38,7 @@ model OrderEvent {
   orderId   String   @unique
   quantity  Float
   status    String
+  isOpen    Boolean  @default(true)
   side      String   @default("BUY")
   price     Float
   symbol    String

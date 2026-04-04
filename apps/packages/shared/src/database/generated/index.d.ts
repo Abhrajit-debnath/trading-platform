@@ -3377,6 +3377,7 @@ export namespace Prisma {
     orderId: string | null
     quantity: number | null
     status: string | null
+    isOpen: boolean | null
     side: string | null
     price: number | null
     symbol: string | null
@@ -3390,6 +3391,7 @@ export namespace Prisma {
     orderId: string | null
     quantity: number | null
     status: string | null
+    isOpen: boolean | null
     side: string | null
     price: number | null
     symbol: string | null
@@ -3403,6 +3405,7 @@ export namespace Prisma {
     orderId: number
     quantity: number
     status: number
+    isOpen: number
     side: number
     price: number
     symbol: number
@@ -3428,6 +3431,7 @@ export namespace Prisma {
     orderId?: true
     quantity?: true
     status?: true
+    isOpen?: true
     side?: true
     price?: true
     symbol?: true
@@ -3441,6 +3445,7 @@ export namespace Prisma {
     orderId?: true
     quantity?: true
     status?: true
+    isOpen?: true
     side?: true
     price?: true
     symbol?: true
@@ -3454,6 +3459,7 @@ export namespace Prisma {
     orderId?: true
     quantity?: true
     status?: true
+    isOpen?: true
     side?: true
     price?: true
     symbol?: true
@@ -3554,6 +3560,7 @@ export namespace Prisma {
     orderId: string
     quantity: number
     status: string
+    isOpen: boolean
     side: string
     price: number
     symbol: string
@@ -3586,6 +3593,7 @@ export namespace Prisma {
     orderId?: boolean
     quantity?: boolean
     status?: boolean
+    isOpen?: boolean
     side?: boolean
     price?: boolean
     symbol?: boolean
@@ -3599,6 +3607,7 @@ export namespace Prisma {
     orderId?: boolean
     quantity?: boolean
     status?: boolean
+    isOpen?: boolean
     side?: boolean
     price?: boolean
     symbol?: boolean
@@ -3612,6 +3621,7 @@ export namespace Prisma {
     orderId?: boolean
     quantity?: boolean
     status?: boolean
+    isOpen?: boolean
     side?: boolean
     price?: boolean
     symbol?: boolean
@@ -3625,6 +3635,7 @@ export namespace Prisma {
     orderId?: boolean
     quantity?: boolean
     status?: boolean
+    isOpen?: boolean
     side?: boolean
     price?: boolean
     symbol?: boolean
@@ -3632,7 +3643,7 @@ export namespace Prisma {
     timeStamp?: boolean
   }
 
-  export type OrderEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orderId" | "quantity" | "status" | "side" | "price" | "symbol" | "createdAt" | "timeStamp", ExtArgs["result"]["orderEvent"]>
+  export type OrderEventOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "orderId" | "quantity" | "status" | "isOpen" | "side" | "price" | "symbol" | "createdAt" | "timeStamp", ExtArgs["result"]["orderEvent"]>
 
   export type $OrderEventPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OrderEvent"
@@ -3643,6 +3654,7 @@ export namespace Prisma {
       orderId: string
       quantity: number
       status: string
+      isOpen: boolean
       side: string
       price: number
       symbol: string
@@ -4076,6 +4088,7 @@ export namespace Prisma {
     readonly orderId: FieldRef<"OrderEvent", 'String'>
     readonly quantity: FieldRef<"OrderEvent", 'Float'>
     readonly status: FieldRef<"OrderEvent", 'String'>
+    readonly isOpen: FieldRef<"OrderEvent", 'Boolean'>
     readonly side: FieldRef<"OrderEvent", 'String'>
     readonly price: FieldRef<"OrderEvent", 'Float'>
     readonly symbol: FieldRef<"OrderEvent", 'String'>
@@ -4501,6 +4514,7 @@ export namespace Prisma {
     orderId: 'orderId',
     quantity: 'quantity',
     status: 'status',
+    isOpen: 'isOpen',
     side: 'side',
     price: 'price',
     symbol: 'symbol',
@@ -4579,6 +4593,13 @@ export namespace Prisma {
    * Reference to a field of type 'Float[]'
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -4755,6 +4776,7 @@ export namespace Prisma {
     orderId?: StringFilter<"OrderEvent"> | string
     quantity?: FloatFilter<"OrderEvent"> | number
     status?: StringFilter<"OrderEvent"> | string
+    isOpen?: BoolFilter<"OrderEvent"> | boolean
     side?: StringFilter<"OrderEvent"> | string
     price?: FloatFilter<"OrderEvent"> | number
     symbol?: StringFilter<"OrderEvent"> | string
@@ -4768,6 +4790,7 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    isOpen?: SortOrder
     side?: SortOrder
     price?: SortOrder
     symbol?: SortOrder
@@ -4784,6 +4807,7 @@ export namespace Prisma {
     userId?: StringFilter<"OrderEvent"> | string
     quantity?: FloatFilter<"OrderEvent"> | number
     status?: StringFilter<"OrderEvent"> | string
+    isOpen?: BoolFilter<"OrderEvent"> | boolean
     side?: StringFilter<"OrderEvent"> | string
     price?: FloatFilter<"OrderEvent"> | number
     symbol?: StringFilter<"OrderEvent"> | string
@@ -4797,6 +4821,7 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    isOpen?: SortOrder
     side?: SortOrder
     price?: SortOrder
     symbol?: SortOrder
@@ -4818,6 +4843,7 @@ export namespace Prisma {
     orderId?: StringWithAggregatesFilter<"OrderEvent"> | string
     quantity?: FloatWithAggregatesFilter<"OrderEvent"> | number
     status?: StringWithAggregatesFilter<"OrderEvent"> | string
+    isOpen?: BoolWithAggregatesFilter<"OrderEvent"> | boolean
     side?: StringWithAggregatesFilter<"OrderEvent"> | string
     price?: FloatWithAggregatesFilter<"OrderEvent"> | number
     symbol?: StringWithAggregatesFilter<"OrderEvent"> | string
@@ -4995,6 +5021,7 @@ export namespace Prisma {
     orderId: string
     quantity: number
     status: string
+    isOpen?: boolean
     side?: string
     price: number
     symbol: string
@@ -5008,6 +5035,7 @@ export namespace Prisma {
     orderId: string
     quantity: number
     status: string
+    isOpen?: boolean
     side?: string
     price: number
     symbol: string
@@ -5021,6 +5049,7 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    isOpen?: BoolFieldUpdateOperationsInput | boolean
     side?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     symbol?: StringFieldUpdateOperationsInput | string
@@ -5034,6 +5063,7 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    isOpen?: BoolFieldUpdateOperationsInput | boolean
     side?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     symbol?: StringFieldUpdateOperationsInput | string
@@ -5047,6 +5077,7 @@ export namespace Prisma {
     orderId: string
     quantity: number
     status: string
+    isOpen?: boolean
     side?: string
     price: number
     symbol: string
@@ -5060,6 +5091,7 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    isOpen?: BoolFieldUpdateOperationsInput | boolean
     side?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     symbol?: StringFieldUpdateOperationsInput | string
@@ -5073,6 +5105,7 @@ export namespace Prisma {
     orderId?: StringFieldUpdateOperationsInput | string
     quantity?: FloatFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
+    isOpen?: BoolFieldUpdateOperationsInput | boolean
     side?: StringFieldUpdateOperationsInput | string
     price?: FloatFieldUpdateOperationsInput | number
     symbol?: StringFieldUpdateOperationsInput | string
@@ -5293,12 +5326,18 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type OrderEventCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    isOpen?: SortOrder
     side?: SortOrder
     price?: SortOrder
     symbol?: SortOrder
@@ -5317,6 +5356,7 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    isOpen?: SortOrder
     side?: SortOrder
     price?: SortOrder
     symbol?: SortOrder
@@ -5330,6 +5370,7 @@ export namespace Prisma {
     orderId?: SortOrder
     quantity?: SortOrder
     status?: SortOrder
+    isOpen?: SortOrder
     side?: SortOrder
     price?: SortOrder
     symbol?: SortOrder
@@ -5340,6 +5381,14 @@ export namespace Prisma {
   export type OrderEventSumOrderByAggregateInput = {
     quantity?: SortOrder
     price?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type OrderCommandCreateNestedManyWithoutUserInput = {
@@ -5420,6 +5469,10 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutOrderInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutOrderInput, UserUpdateWithoutOrderInput>, UserUncheckedUpdateWithoutOrderInput>
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -5552,6 +5605,19 @@ export namespace Prisma {
     _sum?: NestedFloatFilter<$PrismaModel>
     _min?: NestedFloatFilter<$PrismaModel>
     _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type OrderCommandCreateWithoutUserInput = {

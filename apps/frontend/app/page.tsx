@@ -24,63 +24,6 @@ interface TradingPair {
 
 
 export default function Home() {
-
-
-
-
-  // const { data: exchangeData, isLoading } = useQuery({
-  //   queryKey: ["exchangeInfo"],
-  //   queryFn: async () => {
-  //     const res = await axios.get("https://testnet.binance.vision/api/v3/exchangeInfo");
-  //     if (res.status == 200) {
-  //       console.log("hh");
-
-  //       return res.data
-
-  //     }
-  //   },
-  //   staleTime: 1000 * 60 * 5
-
-  // })
-
-  // console.log("exchange data", exchangeData);
-
-
-
-
-
-
-  // const commonPairs = ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "ADAUSDT", "DOGEUSDT", "AVAXUSDT", "LTCUSDT", "LINKUSDT", "SOLUSDT"]
-
-
-  // const allPairs = useMemo(() => {
-
-  //   if (!exchangeData || !priceData) {
-  //     return []
-  //   }
-
-  //   const priceMap = new Map(
-  //     priceData.map((s: any) => [s.symbol, s.price])
-  //   )
-
-  //   const filteredPair = exchangeData.symbols.filter((s: TradingPair) => s.status === 'TRADING' && commonPairs.includes(s.symbol))
-
-  //   return filteredPair.map((s: TradingPair) => ({
-  //     symbol: s.symbol,
-  //     baseAsset: s.baseAsset,
-  //     quoteAsset: s.quoteAsset,
-  //     price: priceMap.get(s.symbol) ?? "-"
-  //   }))
-
-  // },
-  //   [exchangeData, priceData]
-  // );
-
-
-
-
-
-
   return (
     <SocketProvider>
       <div className="w-screen h-screen p-2 flex flex-col overflow-hidden">

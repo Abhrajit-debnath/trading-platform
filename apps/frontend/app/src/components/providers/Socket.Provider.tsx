@@ -18,6 +18,7 @@ const SocketProvider = ({ children }: { children: React.ReactNode }) => {
         socket.on("connect", () => console.log(socket.id))
         socket.on("ORDER_UPDATE", (data) => {
 
+console.log(data);
 
 
             const { status, symbol, orderId, quantity, reason } = data

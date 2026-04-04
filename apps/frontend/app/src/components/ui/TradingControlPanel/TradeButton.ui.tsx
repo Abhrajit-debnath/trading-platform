@@ -10,8 +10,8 @@ const TradeButton = () => {
     
     return (
         <div className='mt-5'>
-           <div className={`rounded-full border border-0.5 ${side === 'buy' ? "border-green-600" : "border-red-600"} px-0.5`}>
-  <button type='submit' className={`cursor-pointer font-medium rounded-full w-full border-2 ${side === 'buy' ? "bg-green-700" : "bg-red-700"} p-2 text-white text-center capitalize`}>
+           <div className={`rounded-full border border-0.5 ${side === 'BUY' ? "border-green-600" : "border-red-600"} px-0.5`}>
+  <button type='submit' className={`cursor-pointer font-medium rounded-full w-full border-2 ${side === 'BUY' ? "bg-green-700" : "bg-red-700"} p-2 text-white text-center capitalize`}>
     {side} <span className='uppercase'>{`${buttonBase?.base}/${buttonBase?.quote}`}</span>
   </button>
 </div>

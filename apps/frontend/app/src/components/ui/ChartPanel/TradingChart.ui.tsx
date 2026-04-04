@@ -45,8 +45,6 @@ const TradingChart = memo(({ chartData, symbol, interval }: TradingChartProps) =
             }
             candlestickSeries.update(realTimeData)
         }
-
-
         const candlestickSeries = chart.addSeries(CandlestickSeries, {
             upColor: '#26a69a',
             downColor: '#ef5350',
@@ -54,8 +52,6 @@ const TradingChart = memo(({ chartData, symbol, interval }: TradingChartProps) =
             wickUpColor: '#26a69a',
             wickDownColor: '#ef5350',
         })
-
-
         const formattedChartData = chartData.map((k: any[]) => ({
             time: (parseFloat(k[0]) / 1000) as UTCTimestamp,
             open: parseFloat(k[1]),
@@ -64,9 +60,6 @@ const TradingChart = memo(({ chartData, symbol, interval }: TradingChartProps) =
             close: parseFloat(k[4])
         })
         )
-
-
-
         candlestickSeries.setData(formattedChartData)
 
         chart.timeScale().fitContent()
@@ -79,7 +72,7 @@ const TradingChart = memo(({ chartData, symbol, interval }: TradingChartProps) =
 
     return (
         <div className="w-full">
-            <div className="w-full h-96" ref={chartRef} />
+            <div className="w-full h-76" ref={chartRef} />
         </div>
     )
 })

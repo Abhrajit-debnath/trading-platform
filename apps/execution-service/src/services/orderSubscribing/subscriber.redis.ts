@@ -8,6 +8,8 @@ const fetchOrderData = async () => {
     try {
         sub.subscribe("commands:order:submit", async (orderDetails) => {
             const order: orderDetailsType = JSON.parse(orderDetails)
+            console.log(order);
+            
             const orderResponse = await placeMarketOrder(order)
 
 
