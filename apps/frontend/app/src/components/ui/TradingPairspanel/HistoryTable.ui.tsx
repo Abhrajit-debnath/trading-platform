@@ -2,6 +2,7 @@ import React from 'react'
 import PositionRow from './PositionRow.ui'
 import AllPriceProvider from '../../providers/AllPrice.Provider'
 
+
 export interface tradesDataInterface {
 
     createdAt: Date
@@ -19,9 +20,11 @@ export interface tradesDataInterface {
 
 type HistoryTableProps = {
     tradesData: tradesDataInterface[]
+  
 }
 
 const HistoryTable = ({ tradesData }: HistoryTableProps) => {
+    
     return (
         <table className="w-full">
             <thead className="sticky top-0 bg-white z-10">

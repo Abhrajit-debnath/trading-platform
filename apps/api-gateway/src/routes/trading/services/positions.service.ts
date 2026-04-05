@@ -26,40 +26,45 @@ const getPositions = async (req: Request, res: Response, next: NextFunction) => 
         console.log(filledOrders);
 
 
-        // const calculateNetPositions = (filledPositions: typeof filledOrders) => {
+        const calculateNetPositions = (filledPositions: typeof filledOrders) => {
 
 
-        //     const netPositions: Record<string, {
-        //         symbol: string,
-        //         quantity: number,
-        //         price: number,
+            const netPositions: Record<string, {
+                symbol: string,
+                quantity: number,
+                price: number,
+                side: string
 
-        //     }> = {}
-        //     for (const order of filledPositions) {
-        //         if (!netPositions[order.symbol]) {
-        //             netPositions[order.symbol] = {
-        //                 symbol: order.symbol,
-        //                 quantity: parseFloat(order.quantity.toFixed(3)),
-        //                 price: order.price
-        //             }
-        //         }
+            }> = {}
+            for (const order of filledPositions) {
+                if (!netPositions[order.symbol]) {
+                    netPositions[order.symbol] = {
+                        symbol: order.symbol,
+                        quantity: order.quantity,
+                        side: order.side,
+                        price: order.price ?? 0
+                    }
+                }
 
-        //         if (order.side === 'BUY') {
-        //             netPositions[order.symbol].quantity += order.quantity
+                if (order.side === 'BUY') {
+                    netPositions[order.symbol].quantity += order.quantity
 
-        //         } else {
-        //             netPositions[order.symbol].quantity -= order.quantity
-        //         }
-        //     }
-        //     return netPositions
-        // }
-        // const resultpositions = calculateNetPositions(filledOrders)
+                } else {
+                    netPositions[order.symbol].quantity -= order.quantity
+                }
+            }
+            return netPositions
+        }
+        const resultpositions = calculateNetPositions(filledOrders)
+        console.log(resultpositions);
 
-        // const filteredNetPositions = Object.values(resultpositions)
-        // console.log(filteredNetPositions);
-        
 
-        sendSuccess(res, filledOrders, 200)
+        const filteredNetPositions = Object.values(resultpositions).filter(p => p.quantity > 0)
+        console.log("filtered", filteredNetPositions);
+
+
+
+        sendSuccess(res, filteredNetPositions, 200)
     } catch (error) {
         next(error)
     }
