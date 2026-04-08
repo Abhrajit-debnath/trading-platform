@@ -6,7 +6,7 @@ import cookieParser from "cookie-parser"
 import authMiddleware from "./middlewares/auth.middleware"
 import { connectRedis } from "./lib/redis"
 import TradeRouter from "./routes/trading/trading"
-import AccountRouter from "./routes/account/router"
+// import AccountRouter from "./routes/account/router"
 import { env } from "@crypto/database"
 import cors from "cors"
 
@@ -38,7 +38,7 @@ app.use(cookieParser())
 
 app.use("/api/auth/", authRouter)
 app.use("/api/trading/", authMiddleware, TradeRouter)
-app.use("/api/account/", authMiddleware, AccountRouter)
+// app.use("/api/account/", authMiddleware, AccountRouter)
 
 // Health check
 app.get("/health", (req: Request, res: Response) => {

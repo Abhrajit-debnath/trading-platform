@@ -1,10 +1,10 @@
-import express, { Router } from 'express'
-import AccountService from './account.service'
+// import express, { Router } from 'express'
+// import AccountService from './account.service'
 
-const router: Router = express.Router()
+// const router: Router = express.Router()
 
-// Route
+// // Route
 
-router.get("/", AccountService)
+// router.get("/", AccountService)
 
-export default router
+// export default router
