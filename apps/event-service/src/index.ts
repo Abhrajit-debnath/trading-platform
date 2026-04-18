@@ -1,5 +1,7 @@
+import dotenv from "dotenv"
+dotenv.config()
+
 import express from "express"
-import { env } from "@crypto/database"
 import { createServer } from "http"
 import initSocket from "./lib/webSocket";
 import { connectRedis } from "./lib/redis";
@@ -25,8 +27,8 @@ const start = async () => {
         })
     })
 
-    httpServer.listen(env.EVENT_SERVICE_PORT, () => {
-        console.log(`🚀 Event service running on port ${env.EVENT_SERVICE_PORT}`)
+    httpServer.listen(process.env.EVENT_SERVICE_PORT, () => {
+        console.log(`🚀 Event service running on port ${process.env.EVENT_SERVICE_PORT}`)
     })
 }
 

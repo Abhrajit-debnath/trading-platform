@@ -1,7 +1,6 @@
 import { Server } from "socket.io"
 import type { Server as HTTPserver } from "http"
 import JWT, { JwtPayload } from "jsonwebtoken"
-import { env } from "@crypto/database"
 
 let io: Server
 
@@ -23,7 +22,7 @@ const initSocket = (httpServer: HTTPserver) => {
             if (!token) {
                 throw new Error("Unauthorized")
             }
-            const decoded = JWT.verify(token, env.JWT_SECRET) as JwtPayload
+            const decoded = JWT.verify(token, process.env.JWT_SECRET!) as JwtPayload
             socket.data.userId = decoded.id
             next()
         } catch (error) {

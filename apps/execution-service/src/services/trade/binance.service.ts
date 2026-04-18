@@ -3,8 +3,6 @@ import generateSignature from "./signature.service"
 import axios from 'axios'
 import { prisma } from "@crypto/database"
 
-import { env } from "@crypto/database"
-
 export interface orderDetailsType {
     orderId: string
     userId: string
@@ -20,24 +18,24 @@ export interface orderDetailsType {
 
 
 const placeMarketOrder = async (orderDetails: orderDetailsType) => {
-    const timestamp = await getServerTime(env.BINANCE_BASE_URL)
+    const timestamp = await getServerTime(process.env.BINANCE_BASE_URL!)
 
 
-    const { symbol, side, quantity, orderId, type, price, stopPrice , userId} = orderDetails
+    const { symbol, side, quantity, orderId, type, price, stopPrice, userId } = orderDetails
 
- const user  =  await prisma.user.findUnique({
-    where : {
-        id : userId
-    }
- })
+    const user = await prisma.user.findUnique({
+        where: {
+            id: userId
+        }
+    })
 
- if (!user) {
-    return {
+    if (!user) {
+        return {
             success: false,
             status: "REJECTED",
             reason: "User not found"
         }
- }
+    }
 
 
     let queryString = `symbol=${symbol}&side=${side}&type=${type}&quantity=${quantity}&timestamp=${timestamp}`
@@ -53,7 +51,7 @@ const placeMarketOrder = async (orderDetails: orderDetailsType) => {
     const signature = generateSignature(queryString, user.binanceSecretKey)
     try {
         const response = await axios.post(
-            `${env.BINANCE_BASE_URL}/api/v3/order?${queryString}&signature=${signature}`,
+            `${process.env.BINANCE_BASE_URL}/api/v3/order?${queryString}&signature=${signature}`,
             null,
             { headers: { 'X-MBX-APIKEY': user.binanceApiKey } }
         )

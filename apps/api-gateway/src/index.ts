@@ -1,4 +1,5 @@
-
+import dotenv from "dotenv"
+dotenv.config()
 import express, { Express, Request, Response } from "express"
 import authRouter from "./routes/auth/auth"
 import errorHandler from "./utils/ErrorHandler"
@@ -7,14 +8,13 @@ import authMiddleware from "./middlewares/auth.middleware"
 import { connectRedis } from "./lib/redis"
 import TradeRouter from "./routes/trading/trading"
 // import AccountRouter from "./routes/account/router"
-import { env } from "@crypto/database"
 import cors from "cors"
 
 
 
 
 const app: Express = express()
-const PORT = env.PORT
+const PORT = process.env.PORT
 
 const corsOptions = {
     origin: 'http://localhost:3000',

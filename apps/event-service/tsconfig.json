@@ -1,9 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@crypto/database": ["../packages/shared/src/index.ts"]
-    },
     "rootDir": "./src",
     "outDir": "./dist",
     "module": "commonjs",
@@ -14,7 +10,6 @@
     "skipLibCheck": true
   },
   "include": ["src/**/*", "../api-gateway/src/types"],
-  "references": [{ "path": "../packages/" }]
 }
 
 

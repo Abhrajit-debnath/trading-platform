@@ -19,8 +19,9 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@crypto/database": "workspace:*",
     "axios": "^1.13.6",
-    "redis": "^5.11.0",
-    "@crypto/database": "workspace:*"
+    "dotenv": "^17.3.1",
+    "redis": "^5.11.0"
   }
 }

@@ -1,13 +1,13 @@
-import { env } from "@crypto/database"
+
 import { createClient } from "redis"
 
 
 export const sub = createClient({
-    url: env.REDIS_URL
+    url: process.env.REDIS_URL
 })
 
 export const pub = createClient({
-    url: env.REDIS_URL
+    url: process.env.REDIS_URL
 })
 
 
