@@ -4,8 +4,9 @@
   "description": "",
   "main": "shared/src/index.ts",
   "types": "shared/src/index.ts",
-  "scripts": {
-    "dev": ""
+ "scripts": {
+    "build": "tsc",
+    "generate": "prisma generate --config prisma.config.ts"
   },
   "keywords": [],
   "author": "",

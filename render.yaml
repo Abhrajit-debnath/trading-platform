@@ -1,0 +1,74 @@
+services:
+  - type: web
+    name: api-gateway
+    runtime: node
+    rootDir: .
+    buildCommand: >-
+      pnpm install --frozen-lockfile &&
+      pnpm --filter @crypto/database run generate &&
+      pnpm --filter @crypto/database run build &&
+      pnpm --filter api-gateway run build
+    startCommand: pnpm --filter api-gateway run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: REDIS_URL
+        sync: false
+
+  - type: web
+    name: event-service
+    runtime: node
+    rootDir: .
+    buildCommand: >-
+      pnpm install --frozen-lockfile &&
+      pnpm --filter @crypto/database run generate &&
+      pnpm --filter @crypto/database run build &&
+      pnpm --filter event-service run build
+    startCommand: pnpm --filter event-service run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REDIS_URL
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+
+  - type: worker
+    name: execution-service
+    runtime: node
+    rootDir: .
+    buildCommand: >-
+      pnpm install --frozen-lockfile &&
+      pnpm --filter @crypto/database run generate &&
+      pnpm --filter @crypto/database run build &&
+      pnpm --filter execution-service run build
+    startCommand: pnpm --filter execution-service run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: REDIS_URL
+        sync: false
+      - key: BINANCE_API_KEY
+        sync: false
+      - key: BINANCE_API_SECRET
+        sync: false
+
+  - type: web
+    name: frontend
+    runtime: node
+    rootDir: .
+    buildCommand: >-
+      pnpm install --frozen-lockfile &&
+      pnpm --filter frontend run build
+    startCommand: pnpm --filter frontend run start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_API_URL
+        sync: false
+      - key: NEXT_PUBLIC_SOCKET_URL
+        sync: false

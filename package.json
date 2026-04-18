@@ -7,7 +7,8 @@
     "dev:gateway": "pnpm --filter api-gateway dev",
     "dev:execution": "pnpm --filter execution-service dev",
     "dev:events": "pnpm --filter event-service dev",
-    "dev:frontend": "pnpm --filter frontend dev"
+    "dev:frontend": "pnpm --filter frontend dev",
+    "render-build": "pnpm install --frozen-lockfile"
   },
   "keywords": [],
   "author": "",
