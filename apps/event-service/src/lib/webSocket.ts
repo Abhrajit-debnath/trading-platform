@@ -19,6 +19,8 @@ const initSocket = (httpServer: HTTPserver) => {
     io.use((socket, next) => {
         try {
             const token = socket.handshake.headers.cookie?.split(";").find((c => c.trim().startsWith("token=")))?.split("=")[1]
+            
+            
             if (!token) {
                 throw new Error("Unauthorized")
             }

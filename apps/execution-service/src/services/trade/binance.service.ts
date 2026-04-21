@@ -37,7 +37,6 @@ const placeMarketOrder = async (orderDetails: orderDetailsType) => {
         }
     }
 
-
     let queryString = `symbol=${symbol}&side=${side}&type=${type}&quantity=${quantity}&timestamp=${timestamp}`
 
     if (type === 'LIMIT') {

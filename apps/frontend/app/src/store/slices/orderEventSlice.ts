@@ -7,6 +7,7 @@ interface orderSlice {
         symbol: string,
         status: string,
         quantity : number
+         updatedAt: number
     }
 
 }
@@ -16,7 +17,8 @@ const initialState: orderSlice = {
         orderId: "",
         symbol: "",
         status: "",
-        quantity: 0
+        quantity: 0,
+         updatedAt: 0 
     }
 }
 
@@ -37,6 +39,7 @@ export const orderEventSlice = createSlice({
             state.value.symbol = action.payload.symbol
             state.value.status = action.payload.status
             state.value.quantity = action.payload.quantity
+             state.value.updatedAt = Date.now() 
 
         }
     }

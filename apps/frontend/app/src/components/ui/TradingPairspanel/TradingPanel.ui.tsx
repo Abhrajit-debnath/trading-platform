@@ -15,6 +15,9 @@ export default function PositionsPanel() {
 
     const [activeTab, setActiveTab] = useState<React.SetStateAction<string>>('positions')
     const [data, isLoading] = UseReactQuery(activeTab === 'positions' ? "/api/trading/positions" : activeTab === 'orders' ? "/api/trading/orders" : "/api/trading/trades", "positions")
+    console.log(data);
+
+
     const [search, setsearch] = useState("")
     const tradesData = data?.data ?? []
     const filteredPositions = search.length > 0 ? tradesData.filter((trade: tradeType) => trade.symbol.toLowerCase().includes(search.toLowerCase())) : tradesData

@@ -7,11 +7,14 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useAppSelector } from '@/app/hook'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { useAppDispatch } from '@/app/hook'
+import { setLastOrderEvent } from '../../../store/slices/orderEventSlice'
 
 const PriceControls = () => {
     const [activeMarketnav, setActiveMarketnav] = useState<string>("limit")
     const symbol = useAppSelector((state) => state.symbols.value)
     const side = useAppSelector((state) => state.side.value)
+    const dispatch = useAppDispatch()
 
     const {
         register,
@@ -31,7 +34,6 @@ const PriceControls = () => {
 
 
     const onformSubmit = async (data: orderFormData) => {
-        console.log(data);
 
         const payload = {
             symbol,
@@ -45,6 +47,8 @@ const PriceControls = () => {
             const res = await axios.post("http://localhost:8000/api/trading/orders", payload, {
                 withCredentials: true
             })
+
+
             toast.success(`order placing  ${data.limitPrice ? `at ${data.limitPrice}` : `with ${data.quantity}`}`)
 
 
