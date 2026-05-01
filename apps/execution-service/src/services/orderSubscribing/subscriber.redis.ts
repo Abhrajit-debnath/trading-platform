@@ -13,7 +13,7 @@ const fetchOrderData = async () => {
             const orderResponse = await placeMarketOrder(order)
 
 
-
+    
 
             await pub.publish("events:order:status", JSON.stringify({
                 orderId: order.orderId,

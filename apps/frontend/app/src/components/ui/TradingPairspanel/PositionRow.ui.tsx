@@ -37,7 +37,6 @@ const handleExitPosition = async (tradePosition: tradesDataInterface) => {
 }
 
 const PositionRow = memo(({ position }: positionRowProps) => {
-
     const [showExit, setshowExit] = useState(false)
     const prices = useContext(priceContext)
     const { percent, pnl, nanCheckPercent, nanCheckPnl } = useMemo(() => {

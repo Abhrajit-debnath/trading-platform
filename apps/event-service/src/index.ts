@@ -1,5 +1,6 @@
 import dotenv from "dotenv"
 dotenv.config()
+import cors from "cors"
 
 import express from "express"
 import { createServer } from "http"
@@ -13,6 +14,10 @@ const app = express()
 
 
 const httpServer = createServer(app)
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+}))
 
 app.use(express.json())
 

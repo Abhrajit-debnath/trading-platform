@@ -5,6 +5,8 @@ import { useAppSelector } from '@/app/hook'
 const axiosInstance = axios.create(axiosconfg) 
 
 const UseReactQuery = (queryString: string, name: string) => {
+    console.log(queryString);
+    
     const lastOrderEvent = useAppSelector((state) => state.lastOrderEvent.value)
 
     const { data, isLoading } = useQuery({
